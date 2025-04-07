@@ -1,8 +1,11 @@
 {
   "name": "casamentobeatrizeiago",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
+  "description": "A React application for the wedding of Beatriz and Iago.",
+  "author": "Igor Cariello",
+
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

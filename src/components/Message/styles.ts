@@ -5,10 +5,9 @@ export const Container = styled.div`
   height: auto;
   min-height: 100vh;
 
-  background-color: mediumseagreen;
+  background-color: darkslategrey;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  > h3 {
+    text-transform: uppercase;
+  }
 `
-
