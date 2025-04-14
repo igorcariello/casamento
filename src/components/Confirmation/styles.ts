@@ -6,7 +6,7 @@ export const Container = styled.div`
   height: auto;
   min-height: 100vh;
 
-  background-color: crimson;
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_7};
 
   display: flex;
   flex-direction: column;
@@ -21,6 +21,34 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 3rem;
+
+  > h3 {
+    text-transform: uppercase;
+
+    font-family: 'Montserrat', sans-serif;
+    color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+    font-weight: 500;
+  }
+
+  > p,a {
+    font-family: 'Montserrat', sans-serif;
+
+    font-size: 1.2rem;
+    text-align: center;
+    color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+  }
+
+  > a{
+    
+    cursor: pointer;
+
+    &:hover{
+      filter: brightness(0.4);
+      transform: scale(1.05);
+      transition: all 0.3s ease-in-out;
+
+    }
+  }
 
 `
 

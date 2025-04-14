@@ -5,18 +5,28 @@ export const Container = styled.div`
   height: auto;
   min-height: 100vh;
 
-  background-color: lightgreen;
+  padding: 2rem 5rem;
 
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_2};
   display: grid;
   grid-template-rows: auto 2fr;
 
-  > p {
-    width: 50%;
-    margin: 15rem auto 5rem;
-    text-align: center;
+  > div {
+    margin: 5rem auto;
+
+    > p {
+      text-align: center;
+  
+      font-size: 1.25rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    p + p {
+      margin-top: 1.5rem;
+    }
   }
+
   > img {
-    background-color: lightcoral;
     height: 15rem;
     margin: 0 auto;
   }

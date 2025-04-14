@@ -1,4 +1,4 @@
-import { Container, DressCode, Image, Transport } from "./styles";
+import { Container, Content, DressCode, Image, Transport } from "./styles";
 
 
 
@@ -6,20 +6,24 @@ import { Container, DressCode, Image, Transport } from "./styles";
 export function TipForGuests() {
   return (
     <Container>
-      <DressCode>
-        <h3>
-          Dress Code:
-        </h3>
-        <p>
-          Esqueça as gravatas e os saltos finos!
-          Queremos todos confortáveis para curtir uma tarde leve
-          e animada em meio à natureza.
-        </p>
-        <p>
-          «Deixa a vida me levar, vida leva eu".    
-        </p>
-      </DressCode>
-      <Image/>
+      <Content>
+        <DressCode>
+          <h3>
+            Dress Code:
+          </h3>
+          <p>
+            Esqueça as gravatas e os saltos finos!
+          </p>
+          <p>
+            Queremos todos confortáveis para curtir uma tarde leve
+            e animada em meio à natureza.
+          </p>
+          <p>
+            «Deixa a vida me levar, vida leva eu".    
+          </p>
+        </DressCode>
+        <Image/>
+      </Content>
       <Transport>
         <h3>
           Transporte:

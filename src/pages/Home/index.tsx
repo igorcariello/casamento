@@ -9,19 +9,18 @@ import { Present } from "../../components/Present";
 import { TipForGuests } from "../../components/TipForGuests";
 import { Container } from "./styles";
 
-
 export function Home() {
   return (
     <Container>
       <BackgroundHeader />
-      <Phrase/>
+      <Phrase />
       <Address />
       <OurHistory />
-      <TipForGuests/>
-      <Hosting/>
-      <Confirmation/>
-      <Present/>
-      <Message/>
+      <TipForGuests />
+      <Hosting />
+      <Confirmation />
+      <Present />
+      <Message />
     </Container>
-  )
+  );
 }

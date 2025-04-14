@@ -1,5 +1,5 @@
-import { Container, Content, Header } from "./styles";
-
+import { Container, Header } from "./styles";
+import backgroundVideo from "../../assets/Savethedate.mp4";
 
 export function BackgroundHeader() {
   return (
@@ -15,11 +15,10 @@ export function BackgroundHeader() {
           </ul>
         </nav>
       </Header>
-      <Content>
-        <h1> Beatriz e Iago</h1>
-        <h2> 25 . OUTUBRO . 2025</h2>
-        <p>NOVA FRIBURGO . RJ</p>
-      </Content>
+      <video autoPlay loop id="background-header">
+        <source src={backgroundVideo} type="video/mp4" />
+        Seu navegador não suporta vídeos HTML5
+      </video>
     </Container>
-  )
+  );
 }
