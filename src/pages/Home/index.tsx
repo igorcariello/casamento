@@ -3,10 +3,10 @@ import { BackgroundHeader } from "../../components/BackgroundHeader";
 import { Confirmation } from "../../components/Confirmation";
 import { Hosting } from "../../components/Hosting";
 import { Message } from "../../components/Message";
-import { OurHistory } from "../../components/OurHistory";
+import { OursHistory } from "../../components/OursHistory";
 import { Phrase } from "../../components/Phrase";
 import { Present } from "../../components/Present";
-import { TipForGuests } from "../../components/TipForGuests";
+import { TipsForGuests } from "../../components/TipsForGuests";
 import { Container } from "./styles";
 
 export function Home() {
@@ -15,8 +15,8 @@ export function Home() {
       <BackgroundHeader />
       <Phrase />
       <Address />
-      <OurHistory />
-      <TipForGuests />
+      <OursHistory />
+      <TipsForGuests />
       <Hosting />
       <Confirmation />
       <Present />

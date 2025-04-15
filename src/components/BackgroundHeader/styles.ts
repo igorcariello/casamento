@@ -56,7 +56,18 @@ export const Header = styled.header`
         font-weight: 500;
         font-size: 0.75rem;
 
+        
         cursor: pointer;
+        
+        a {
+          text-decoration: none;
+          color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+        }
+
+        &:hover {
+          filter: brightness(2.5);
+          transition: all 0.3s ease-in-out;
+        }
       }
     }
   }

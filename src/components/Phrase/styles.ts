@@ -19,6 +19,8 @@ export const Container = styled.div`
   
       font-size: 1.25rem;
       font-family: 'Montserrat', sans-serif;
+      color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+
     }
     
     p + p {

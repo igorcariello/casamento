@@ -14,10 +14,18 @@ export function BackgroundHeader() {
         <img src={BI} alt="logo B I" />
         <nav>
           <ul>
-            <li>Nossa História</li>
-            <li>Dicas Para os Convidados</li>
-            <li>Confirmação de Presença</li>
-            <li>Lista de Presentes</li>
+            <li>
+              <a href="#oursHistory">Nossa História</a>
+            </li>
+            <li>
+              <a href="#tipsForGuests">Dicas Para os Convidados</a>
+            </li>
+            <li>
+              <a href="#confirmation">Confirmação de Presença</a>
+            </li>
+            <li>
+              <a href="#present">Lista de Presentes</a>
+            </li>
           </ul>
         </nav>
       </Header>
