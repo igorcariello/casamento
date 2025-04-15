@@ -10,6 +10,7 @@ export default createGlobalStyle`
   body { 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_2};
   }
 
   :root {
@@ -29,7 +30,6 @@ export default createGlobalStyle`
 
   button, a {
     cursor: pointer;
-    transition: filter 0.2s;
   }
 
   button:hover, a:hover {

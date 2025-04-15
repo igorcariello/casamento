@@ -5,14 +5,10 @@ export const Container = styled.div`
   height: auto;
   min-height: 100vh;
 
-  background-color: transparent;
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_2};
 
   padding: 2rem 5rem;
   position: relative;
-
-  video {
-    background-color: black;
-  }
 
   #background-header{
     position: absolute;
