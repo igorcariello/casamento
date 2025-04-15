@@ -1,5 +1,6 @@
 import { Container, Content, Signature } from "./styles";
 import imageflor4 from "../../assets/flor4.png";
+import signature from "../../assets/beatrizeiagobranco.png";
 
 export function Message() {
   return (
@@ -16,7 +17,7 @@ export function Message() {
       </div>
 
       <Signature>
-        <div></div>
+        <img className="signature-image" src={signature} alt="" />
       </Signature>
     </Container>
   );

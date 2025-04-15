@@ -8,15 +8,21 @@ export const Container = styled.div`
   background-color: transparent;
 
   padding: 2rem 5rem;
+  position: relative;
+
+  video {
+    background-color: black;
+  }
 
   #background-header{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    object-fit: contain;
-    z-index: -1;
+    inset: 0;
+    object-fit: cover;
+    z-index: 0;
+
   }
 `
 
@@ -24,12 +30,16 @@ export const Header = styled.header`
   display: grid;
   grid-template-columns: 1fr 4fr;
   justify-content: space-between;
-  align-items: center;
 
   position: relative;
   overflow: hidden;
   height: 100%;
+  z-index: 1;
 
+  > img {
+    width: 4rem;
+    height: 3rem;
+  }
 
 
   > nav {
@@ -58,19 +68,39 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 15rem;
+  position: relative;
+  z-index: 1;
 
-  >h2 {
-    margin-top: 5rem;
-    
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 1rem;
-  }
-  > p {
-    margin-top: 0.75rem;
+  >img {
+    width: 30rem;
 
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.75rem;
   }
+
+  .text-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    >h2 {
+      margin-top: 5rem;
+      text-transform: uppercase;
+      
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      font-size: 1.3rem;
+      color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+    }
+
+    > p {
+      margin-top: 0.75rem;
+  
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+
+      color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+      text-transform: uppercase;
+    }
+  }
+
 
 `

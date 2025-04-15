@@ -1,12 +1,15 @@
 import styled from "styled-components";
-import signature from '../../assets/beatrizeiagobranco.png'
 
 export const Container = styled.div`
   width: 100%;
   height: auto;
   min-height: 100vh;
 
-  padding: 3rem 7rem 5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 3rem 7rem 5rem 15rem;
 
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_9};
 
@@ -23,21 +26,7 @@ export const Container = styled.div`
   }
 
   
-  
   `
-export const Signature = styled.div`
-  display: flex;
-  justify-content: end;
-  margin-right: 35rem;
-
-  > div {
-    background: url(${signature}) no-repeat center;
-    background-size: 15rem 10rem;
-    width: 15rem;
-    height: 10rem;
-  }
-`
-
 
 
 export const Content = styled.div`
@@ -47,7 +36,7 @@ export const Content = styled.div`
     color: white;
 
     font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
+    font-weight: 400;
 
     margin-bottom: 3rem;
   }
@@ -63,4 +52,16 @@ export const Content = styled.div`
   p:last-child{
     margin-top: 3rem;
   }
+`
+
+export const Signature = styled.div`
+  display: flex;
+  justify-content: end;
+  margin-right: 17rem;
+
+  .signature-image{
+    width: 25rem;
+    height: 10rem;
+  }
+  
 `

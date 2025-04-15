@@ -1,11 +1,17 @@
-import { Container, Header } from "./styles";
-import backgroundVideo from "../../assets/Savethedate.mp4";
+import { Container, Content, Header } from "./styles";
+import backgroundVideo from "../../assets/background-horizontal-1920x1080px.mp4";
+import BI from "../../assets/BI.png";
+import beatrizeiagoverde from "../../assets/biaeiagoverde.png";
 
 export function BackgroundHeader() {
   return (
     <Container>
+      <video autoPlay muted loop id="background-header">
+        <source src={backgroundVideo} type="video/mp4" />
+        Seu navegador não suporta vídeos HTML5
+      </video>
       <Header>
-        <h1>BI</h1>
+        <img src={BI} alt="logo B I" />
         <nav>
           <ul>
             <li>Nossa História</li>
@@ -15,10 +21,13 @@ export function BackgroundHeader() {
           </ul>
         </nav>
       </Header>
-      <video autoPlay loop id="background-header">
-        <source src={backgroundVideo} type="video/mp4" />
-        Seu navegador não suporta vídeos HTML5
-      </video>
+      <Content>
+        <img src={beatrizeiagoverde} alt="Beatriz e Iago" />
+        <div className="text-wrapper">
+          <h2>25 . outubro . 2025</h2>
+          <p>Nova Friburgo</p>
+        </div>
+      </Content>
     </Container>
   );
 }
