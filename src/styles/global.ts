@@ -8,9 +8,8 @@ export default createGlobalStyle`
   }
 
   body { 
-    background-color: transparent;
-
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   :root {
