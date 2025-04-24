@@ -1,28 +1,33 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.section`
   width: 100%;
   height: auto;
   min-height: 100vh;
 
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_9};
+
+  padding: 10rem 1rem;
+  
+`
+
+export const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
-
   > h3 {
     text-transform: uppercase;
     color: white;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
 
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Avenir Book', sans-serif;
     font-weight: 400;
   }
 
   > p,a {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Avenir Book', sans-serif;
     font-weight: 400;
     color: white;
     text-align: center;
@@ -30,9 +35,12 @@ export const Container = styled.div`
     font-size:1.2rem;
   }
   
-  > a {
-    margin-top: 0.5rem;
+  > a{
+    margin-top: 3rem;
     cursor: pointer;
+
+    padding: 0.5rem 3rem;
+    border: 1px solid ${({ theme }) => theme.COLORS.FONT_COLOR_SECUNDARY};
 
     &:hover{
       filter: brightness(0.8);

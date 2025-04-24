@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import imageFlor2 from "../../assets/flor2.png";
 
-export const Container = styled.div`
+export const Container = styled.section`
   width: 100%;
   height: auto;
   min-height: 100vh;
@@ -9,31 +9,32 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_5};
 
 
-  padding: 5rem 20rem;
-
+  padding: 10rem 0;
+  `
+export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 3rem;
-`
-export const Content = styled.div`
-  display:flex;
   align-items: center;
-  gap: 2rem;
+  gap: 5rem;
+  
+  margin: 0 auto;
+  width: 60%;
 `
 
 export const DressCode = styled.div`
-  
+  width: 100%;
   > h3 {
     text-transform: uppercase;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Avenir Book', sans-serif;
     font-weight: 400;
     font-size: 1.5rem;
 
+    margin-bottom: 1.5rem;
     color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
   }
 
   > p {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Avenir Book', sans-serif;
     color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
     margin-top: 0.75rem;
     font-weight: 400;
@@ -41,11 +42,36 @@ export const DressCode = styled.div`
 
   }
 
-  > p:last-child {
-    margin-top: 2rem;
-    
+`
+export const Transport = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  > h3 {
+    text-transform: uppercase;
+    font-family: 'Avenir Book', sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+
+    margin-bottom: 1.5rem; 
+    color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+  }
+
+  > p {
+    font-family: 'Avenir Book', sans-serif;
+    color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+      
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+
+  p + p {
+    margin-top: 0.75rem;
   }
 `
+
 export const Image = styled.div`
   background-image: url(${imageFlor2});
   background-size: contain ;
@@ -54,24 +80,4 @@ export const Image = styled.div`
   width: 15rem;
   height: 15rem;
 
-`
-export const Transport = styled.div`
-
-  > h3 {
-    text-transform: uppercase;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-size: 1.5rem;
-
-    color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
-  }
-
-  > p {
-    font-family: 'Montserrat', sans-serif;
-    color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
-    margin-top: 0.75rem;
-
-    font-size: 1.2rem;
-    font-weight: 400;
-  }
 `

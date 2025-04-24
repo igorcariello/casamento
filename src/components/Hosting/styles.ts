@@ -1,25 +1,34 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.section`
   width:100%;
   height: auto;
   min-height: 100vh;
 
-  padding: 5rem 20rem;
+  display: flex;
+  padding: 10rem 0;
   
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_6};
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 3rem;
 
   h3, p, h4 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Avenir Book', sans-serif;
     color: white;
     font-weight: 400;
   }
 `
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  width: 60%;
+
+  margin: 0 auto;
+
+  width: 60%;
+`
+
 
 export const Header = styled.div`
   > h3 {

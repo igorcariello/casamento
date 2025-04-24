@@ -18,7 +18,7 @@ export function BackgroundHeader() {
               <a href="#oursHistory">Nossa História</a>
             </li>
             <li>
-              <a href="#tipsForGuests">Dicas Para os Convidados</a>
+              <a href="#tipsForGuests">Dicas Para Convidados</a>
             </li>
             <li>
               <a href="#confirmation">Confirmação de Presença</a>

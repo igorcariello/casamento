@@ -7,7 +7,11 @@ export default {
     BACKGROUND_5: "#fcfefd",
     BACKGROUND_6: "#8c9082",
     BACKGROUND_7: "#fcfefd",
-    BACKGROUND_8: '#434b34',
-    BACKGROUND_9: '#8c9082'
+    BACKGROUND_8: '#444C35',
+    BACKGROUND_9: '#8c9082',
+
+    FONT_COLOR_PRIMARY: '#444C35',
+    FONT_COLOR_SECUNDARY: '#FFFFFF'
+
   }
 }

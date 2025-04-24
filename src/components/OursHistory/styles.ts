@@ -1,65 +1,132 @@
 import styled from "styled-components";
-import biaeiago1 from "../../assets/biaeiago1.jpg";
-import biaeiago2 from "../../assets/biaeiago2.jpg";
-import biaeiago3 from "../../assets/biaeiago3.jpg";
+import home1 from "../../assets/home1.jpeg";
+import home2 from "../../assets/home2.jpeg";
+import home3 from "../../assets/home3.jpeg";
+import home4 from "../../assets/home4.jpeg";
+import home5 from "../../assets/home5.jpeg";
+import home6 from "../../assets/home6.jpeg";
+import home7 from "../../assets/home7.jpeg";
+import home8 from "../../assets/home8.jpeg";
+import home9 from "../../assets/home9.jpeg";
 
-export const Container = styled.div`
+export const Container = styled.section`
   width: 100%;
   height: auto;
   min-height: 100vh;
-  padding: 10rem 10rem;
+  padding: 10rem 0;
 
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_4};
 
-  display: grid;
-  grid-template-columns: auto 3fr;
-  align-items: flex-start;
-  gap: 8rem;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
 
 `
 
 export const Imagens = styled.div`
+  width: 60%;
+  flex-wrap: wrap;
+  margin-top: 5rem;
+
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
-
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
   
-
-  #biaeiago1 {
+  
+  
+  #home1 {
+    border-radius: 4px;
     width: 12rem;
     height: 15rem;
-    background-image: url(${biaeiago1});
+    background-image: url(${home1});
     background-size: cover;
     background-position: center;
   }
 
-  #biaeiago2 {
+  #home2 {
+    border-radius: 4px;    
     width: 12rem;
     height: 15rem;
-    background-image: url(${biaeiago2});
+    background-image: url(${home2});
     background-size: cover;
   }
 
-  #biaeiago3 {
+  #home3 {
+    border-radius: 4px;
     width: 12rem;
     height: 15rem;
-    background-image: url(${biaeiago3});
+    background-image: url(${home3});
     background-size: cover;
     background-position: center;
   }
  
+  #home4 {
+    border-radius: 4px;
+    width: 12rem;
+    height: 15rem;
+    background-image: url(${home4});
+    background-size: cover;
+    background-position: center;
+  }
 
+  #home5 {
+    border-radius: 4px;
+    width: 12rem;
+    height: 15rem;
+    background-image: url(${home5});
+    background-size: cover;
+    background-position: center;
+  }
+
+  #home6 {
+    border-radius: 4px;
+    width: 12rem;
+    height: 15rem;
+    background-image: url(${home6});
+    background-size: cover;
+    background-position: center;
+  }
+
+  #home7 {
+    border-radius: 4px;
+    width: 12rem;
+    height: 15rem;
+    background-image: url(${home7});
+    background-size: cover;
+    background-position: center;
+  }
+
+  #home8 {
+    border-radius: 4px;
+    width: 12rem;
+    height: 15rem;
+    background-image: url(${home8});
+    background-size: cover;
+    background-position: center;
+  }
+
+  #home9 {
+    border-radius: 4px;
+    width: 12rem;
+    height: 15rem;
+    background-image: url(${home9});
+    background-size: cover;
+    background-position: center;
+  }
 `
 
 
 
 export const Content = styled.div`
   margin: 0 auto;
+  width: 60%;
 
   > p {
     font-size: 1.5rem;
-    font-family: 'Montserrat', sans-serif;
-    text-indent: 1.5rem;
+    font-family: 'Avenir Book', sans-serif;
     color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
   }
 

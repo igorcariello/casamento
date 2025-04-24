@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.section`
   width: 100%;
   height: auto;
   min-height: 100vh;
@@ -15,6 +15,7 @@ export const Container = styled.div`
     top: 0;
     left: 0;
     width: 100%;
+    height: 100%;
     inset: 0;
     object-fit: cover;
     z-index: 0;
@@ -48,7 +49,7 @@ export const Header = styled.header`
         list-style: none;
         text-transform: uppercase;
         
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Avenir Book', sans-serif;
         font-weight: 500;
         font-size: 0.75rem;
 
@@ -74,7 +75,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 15rem;
+  margin: 15rem auto;
   position: relative;
   z-index: 1;
 
@@ -92,7 +93,7 @@ export const Content = styled.div`
       margin-top: 5rem;
       text-transform: uppercase;
       
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Avenir Book', sans-serif;
       font-weight: 400;
       font-size: 1.3rem;
       color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
@@ -101,7 +102,7 @@ export const Content = styled.div`
     > p {
       margin-top: 0.75rem;
   
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Avenir Book', sans-serif;
       font-size: 1rem;
 
       color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
