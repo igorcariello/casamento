@@ -23,6 +23,10 @@ export const Container = styled.section`
   justify-content: center;
   align-items: center;
 
+  @media (width <= 960px) {
+    padding: 5rem 0;
+  }
+
 `
 
 export const Imagens = styled.div`
@@ -116,6 +120,10 @@ export const Imagens = styled.div`
     background-size: cover;
     background-position: center;
   }
+
+  @media (width <= 960px) {
+    width: 80%;
+  }
 `
 
 
@@ -132,5 +140,13 @@ export const Content = styled.div`
 
   p + p {
     margin-top: 2rem;
+  }
+
+  @media (width <= 960px) {
+    width: 80%;
+
+    > p  {
+      font-size: 1.2rem;
+    }
   }
 `

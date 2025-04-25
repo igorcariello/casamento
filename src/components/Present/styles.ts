@@ -7,7 +7,11 @@ export const Container = styled.section`
 
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_9};
 
-  padding: 10rem 1rem;
+  padding: 10rem 0rem;
+
+  @media (width <= 960px){
+    padding: 5rem 0;
+  }
   
 `
 
@@ -21,6 +25,7 @@ export const Content = styled.div`
     text-transform: uppercase;
     color: white;
     margin-bottom: 5rem;
+    font-size: 1.5rem;
 
     font-family: 'Avenir Book', sans-serif;
     font-weight: 400;
@@ -47,6 +52,20 @@ export const Content = styled.div`
       transform: scale(1.05);
       transition: all 0.3s ease-in-out;
 
+    }
+  }
+
+  @media (width <= 960px){
+    > h3 {
+      font-size: 1.2rem;
+    }
+    
+    > p,a {
+      font-size: 1rem;
+    }
+
+    > a {
+      padding: 0.5rem 2rem;
     }
   }
 `

@@ -5,7 +5,7 @@ import beatrizeiagoverde from "../../assets/biaeiagoverde.png";
 
 export function BackgroundHeader() {
   return (
-    <Container>
+    <Container id="navigation">
       <video autoPlay muted loop id="background-header">
         <source src={backgroundVideo} type="video/mp4" />
         Seu navegador não suporta vídeos HTML5

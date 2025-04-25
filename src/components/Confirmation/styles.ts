@@ -8,6 +8,10 @@ export const Container = styled.section`
 
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_7};
   padding: 10rem 0 0;
+
+  @media (width <= 960px) {
+    padding: 5rem 0 0;
+  }
 `
 export const Content = styled.div`
   display: flex;
@@ -34,6 +38,7 @@ export const Text = styled.div`
     font-family: 'Avenir Book', sans-serif;
     color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
     font-weight: 500;
+    font-size: 1.5rem  
   }
 
   > p,a {
@@ -64,6 +69,22 @@ export const Text = styled.div`
 
     }
   }
+
+  @media (width <= 960px) {
+    > h3 {
+      font-size: 1.2rem;
+    }
+
+    > p, a {
+      font-size: 1rem;
+    }
+
+    > a {
+      padding: 0.5rem 2rem;
+    }
+  
+  }
+
 
 `
 

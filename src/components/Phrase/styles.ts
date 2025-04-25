@@ -40,5 +40,12 @@ export const Content = styled.div`
 
 }
 
+@media (width <= 960px){
+  
+    > p {
+      font-size: 1.2rem
+    }
+  }
+
 
 `

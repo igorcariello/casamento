@@ -1,4 +1,4 @@
-import { BackTop, Container, Content, Signature, Text } from "./styles";
+import { Container, Content, Signature, Text } from "./styles";
 import imageflor4 from "../../assets/flor4.png";
 import signature from "../../assets/beatrizeiagobranco.png";
 import { FaChevronUp } from "react-icons/fa6";
@@ -23,13 +23,11 @@ export function Message() {
         <Signature>
           <img className="signature-image" src={signature} alt="" />
         </Signature>
-        <BackTop>
-          <a href="/">
-            <FaChevronUp size={20} color="#fff" />
-            Voltar ao top
-          </a>
-        </BackTop>
       </Content>
+      <a href="#navigation">
+        <FaChevronUp size={20} color="#fff" />
+        Voltar ao top
+      </a>
     </Container>
   );
 }

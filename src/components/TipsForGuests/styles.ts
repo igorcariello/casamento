@@ -10,6 +10,10 @@ export const Container = styled.section`
 
 
   padding: 10rem 0;
+
+  @media (width <= 960px) {
+    padding: 5rem 0;
+  }
   `
 export const Content = styled.div`
   display: flex;
@@ -19,6 +23,10 @@ export const Content = styled.div`
   
   margin: 0 auto;
   width: 60%;
+
+  @media (width <= 960px) {
+    width: 80%;
+  }
 `
 
 export const DressCode = styled.div`
@@ -40,6 +48,16 @@ export const DressCode = styled.div`
     font-weight: 400;
     font-size: 1.2rem;
 
+  }
+
+  @media (width <= 960px){
+    > h3 {
+      font-size: 1.2rem;
+    }
+    
+    > p {
+      font-size: 1rem
+    }
   }
 
 `
@@ -69,6 +87,17 @@ export const Transport = styled.div`
 
   p + p {
     margin-top: 0.75rem;
+  }
+
+  
+  @media (width <= 960px){
+    > h3 {
+      font-size: 1.2rem;
+    }
+    
+    > p {
+      font-size: 1rem
+    }
   }
 `
 

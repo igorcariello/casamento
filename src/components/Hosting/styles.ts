@@ -15,6 +15,10 @@ export const Container = styled.section`
     color: white;
     font-weight: 400;
   }
+
+  @media (width <= 960px) {
+    padding: 5rem 0;
+  }
 `
 
 export const Content = styled.div`
@@ -27,6 +31,10 @@ export const Content = styled.div`
   margin: 0 auto;
 
   width: 60%;
+  
+  @media (width <= 960px) {
+    width: 80%;
+  }
 `
 
 
@@ -41,6 +49,17 @@ export const Header = styled.div`
     font-size: 1.2rem;
   }
 
+  @media (width <= 960px){
+  
+    > h3 {
+      font-size:1.2rem
+    }
+
+    > p {
+      font-size: 1rem
+    }
+
+  }
 `
 
 export const Hotels = styled.div`
@@ -71,5 +90,13 @@ export const Hotel = styled.div`
   > p {
     margin-top: 1rem;
   }
+
+  @media (width <= 960px){
+  
+    > h4, p {
+      font-size: 1rem;
+    }
+  }
+
 
 `

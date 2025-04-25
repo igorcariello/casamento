@@ -8,6 +8,7 @@ export const Container = styled.section`
   padding: 5rem 3rem 5rem 5rem;
 
   display: flex;
+  flex-direction: column;
   position: relative;
   
   
@@ -23,6 +24,46 @@ export const Container = styled.section`
   
   }
 
+  a[href="#navigation"] {
+    margin-top: 3rem;
+
+    font-size: 1rem;
+    font-family: 'Avenir Book', sans-serif;
+    font-weight: 400;
+    color: ${({ theme }) => theme.COLORS.FONT_COLOR_SECUNDARY};
+    
+    text-decoration: none;
+    text-transform: uppercase;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    @media (width <= 960px){
+      
+      > svg {
+        width: 1rem;
+        height: 1rem;
+      }
+
+      font-size: 0.75rem;
+    }
+
+  }
+
+  
+  @media (width <= 960px){
+    padding: 5rem 3rem;
+
+    > img {
+      width: 12rem;
+      height: 8rem;
+
+      top: 2.5rem;
+      left: 2.5rem;
+    }
+  }
+
 `
 
 export const Content = styled.div`
@@ -32,6 +73,11 @@ export const Content = styled.div`
   align-items: center;
 
   margin-left: 25rem;
+
+  
+  @media (width <= 960px){
+    margin-left: 15rem;
+  }
 `
 
 
@@ -73,6 +119,12 @@ export const Text = styled.div`
   p:last-child{
     margin-top: 3rem;
   }
+
+  @media (width <= 960px){
+    > a, p {
+      font-size: 1rem;
+    }
+  }
 `
 
 export const Signature = styled.div`
@@ -83,27 +135,11 @@ export const Signature = styled.div`
     width: 25rem;
     height: 10rem;
     margin-top: 1rem;
+
+    @media (width <= 960px){
+      width: 22.5rem;
+      height: 9rem;
+    }
   }
   
-`
-
-export const BackTop = styled.div`
-  margin-top: 3rem;
-
-  > a {
-      font-size: 1.2rem;
-      font-family: 'Avenir Book', sans-serif;
-      font-weight: 400;
-      color: ${({ theme }) => theme.COLORS.FONT_COLOR_SECUNDARY};
-      
-      text-decoration: none;
-      text-transform: uppercase;
-      
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-
-    }
-
 `

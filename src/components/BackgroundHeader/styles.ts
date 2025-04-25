@@ -17,9 +17,13 @@ export const Container = styled.section`
     width: 100%;
     height: 100%;
     inset: 0;
-    object-fit: cover;
+    object-fit: initial;
     z-index: 0;
 
+  }
+
+  @media (width <= 960px) {
+    padding: 2rem 2.5rem;
   }
 `
 
@@ -44,6 +48,7 @@ export const Header = styled.header`
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      gap: 1rem;
 
       li {
         list-style: none;

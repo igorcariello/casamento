@@ -42,6 +42,19 @@ export const Content = styled.div`
     text-decoration: none;
 
   }
+
+  @media (width <= 960px){
+  
+  > p {
+    font-size: 1.2rem
+  }
+
+  > a {
+    font-size: 0.75rem;
+    padding: 0.5rem 2rem;
+  }
+}
+
   
 
 `
