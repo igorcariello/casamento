@@ -19,7 +19,7 @@ export const Container = styled.section`
     height: 16rem;
   
     top: 5rem;
-    left: 5rem;
+    left: 10rem;
     position: absolute;
   
   }
@@ -51,6 +51,15 @@ export const Container = styled.section`
 
   }
 
+  @media (width <= 1200px){
+
+    > img {
+      
+
+      top: 2.5rem;
+      left: 2.5rem;
+    }
+  }
   
   @media (width <= 960px){
     padding: 5rem 3rem;
@@ -64,6 +73,30 @@ export const Container = styled.section`
     }
   }
 
+  @media (width <= 712px){
+    padding: 2rem 2rem;
+
+    > img {
+      width: 8rem;
+      height: 6rem;
+
+      top: 1rem;
+      left: 1rem;
+    }
+  }
+
+  @media (width <= 376px){
+    padding: 1rem 1rem;
+
+    > img {
+      width: 4rem;
+      height: 3rem;
+
+      top: 1rem;
+      left: 0.5rem;
+    }
+  }
+
 `
 
 export const Content = styled.div`
@@ -72,11 +105,22 @@ export const Content = styled.div`
   justify-content: center;
   align-items: center;
 
-  margin-left: 25rem;
+  margin-left: 22rem;
 
+  @media (width <= 1200px){
+    margin-left: 18rem;
+  }
   
   @media (width <= 960px){
     margin-left: 15rem;
+  }
+
+  @media (width <= 712px){
+    margin-left: 7rem;
+  }
+
+  @media (width <= 376px){
+    margin-left: 4rem;
   }
 `
 
@@ -89,6 +133,7 @@ export const Text = styled.div`
     cursor: pointer;
 
     display: inline-block;
+    text-align: center;
 
     font-family: 'Avenir Book', sans-serif;
     font-weight: 400;
@@ -124,6 +169,17 @@ export const Text = styled.div`
     > a, p {
       font-size: 1rem;
     }
+
+    > a {
+      padding: 0.5rem 2rem;
+    }
+  }
+
+  @media (width <= 960px){
+
+    > a {
+      padding: 0.5rem 1rem;
+    }
   }
 `
 
@@ -139,6 +195,16 @@ export const Signature = styled.div`
     @media (width <= 960px){
       width: 22.5rem;
       height: 9rem;
+    }
+
+    @media (width <= 712px){
+      width: 14rem;
+      height: 6rem;
+    }
+
+    @media (width <= 376px){
+      width: 10rem;
+      height: 4rem;
     }
   }
   

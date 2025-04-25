@@ -2,12 +2,14 @@ import { Container, Content, Header } from "./styles";
 import backgroundVideo from "../../assets/background-horizontal-1920x1080px.mp4";
 import BI from "../../assets/BI.png";
 import beatrizeiagoverde from "../../assets/biaeiagoverde.png";
+import backgroundVideoVertical from "../../assets/background-vertical-invertido-1080x1920px.mp4";
 
 export function BackgroundHeader() {
   return (
     <Container id="navigation">
       <video autoPlay muted loop id="background-header">
-        <source src={backgroundVideo} type="video/mp4" />
+        <source id="horizontal" src={backgroundVideo} type="video/mp4" />
+        <source id="vertical" src={backgroundVideoVertical} type="video/mp4" />
         Seu navegador não suporta vídeos HTML5
       </video>
       <Header>

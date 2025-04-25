@@ -22,8 +22,20 @@ export const Container = styled.section`
 
   }
 
+  #vertical {
+    display: none;
+  }
+
   @media (width <= 960px) {
     padding: 2rem 2.5rem;
+  }
+
+  @media (width <= 712px) {
+    padding: 2rem 1rem;
+
+    #horizontal {
+      display: none;
+    }
   }
 `
 
