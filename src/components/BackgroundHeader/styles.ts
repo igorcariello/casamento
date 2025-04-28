@@ -59,6 +59,7 @@ export const Header = styled.header`
   display: grid;
   grid-template-columns: 1fr 4fr;
   justify-content: space-between;
+  align-items: center;
 
   position: relative;
   overflow: hidden;
@@ -68,6 +69,16 @@ export const Header = styled.header`
   > img {
     width: 4rem;
     height: 3rem;
+
+    @media (width < 712px) {
+      width: 3rem;
+      height: 2rem;
+    }
+
+    @media (width < 376px) {
+      width: 2rem;
+      height: 1.5rem;
+    }
   }
 
 
@@ -85,9 +96,18 @@ export const Header = styled.header`
         font-family: 'Avenir Book', sans-serif;
         font-weight: 500;
         font-size: 0.75rem;
+        text-align: center;
 
         
         cursor: pointer;
+
+        @media (width < 712px) {
+          font-size: 0.65rem;
+        }
+
+        @media (width < 400px) {
+          font-size: 0.5rem;
+        }
         
         a {
           text-decoration: none;
@@ -115,6 +135,18 @@ export const Content = styled.div`
   >img {
     width: 30rem;
 
+    @media (width < 712px) {
+      width: 25rem;
+    }
+
+    @media (width < 400px) {
+      width: 20rem;
+    }
+
+    @media (width < 340px) {
+      width: 15rem;
+    }
+
   }
 
   .text-wrapper{
@@ -140,6 +172,16 @@ export const Content = styled.div`
 
       color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
       text-transform: uppercase;
+    }
+
+    @media (width < 400px ) {
+      > h2 {
+        font-size: 1rem;
+      }
+
+      >p {
+        font-size: 0.75rem
+      }
     }
   }
 

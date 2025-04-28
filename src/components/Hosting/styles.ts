@@ -7,6 +7,7 @@ export const Container = styled.section`
 
   display: flex;
   padding: 10rem 0;
+  justify-content: center;
   
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_6};
 
@@ -17,7 +18,7 @@ export const Container = styled.section`
   }
 
   @media (width <= 960px) {
-    padding: 5rem 0;
+    padding: 5rem 2rem;
   }
 `
 
@@ -49,22 +50,21 @@ export const Header = styled.div`
     font-size: 1.2rem;
   }
 
-  @media (width <= 960px){
-  
-    > h3 {
-      font-size:1.2rem
-    }
-
-    > p {
-      font-size: 1rem
-    }
-
-  }
+ 
 `
 
 export const Hotels = styled.div`
   display: flex;
   gap: 10rem;
+
+  @media (width <= 960px) {
+    gap: 5rem;
+  }
+
+  @media (width < 712px) {
+    flex-direction: column;
+    gap: 3rem;
+  }
 `
 export const Group1 = styled.div`
   display: flex;
@@ -89,13 +89,6 @@ export const Hotel = styled.div`
 
   > p {
     margin-top: 1rem;
-  }
-
-  @media (width <= 960px){
-  
-    > h4, p {
-      font-size: 1rem;
-    }
   }
 
 

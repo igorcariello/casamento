@@ -50,15 +50,6 @@ export const DressCode = styled.div`
 
   }
 
-  @media (width <= 960px){
-    > h3 {
-      font-size: 1.2rem;
-    }
-    
-    > p {
-      font-size: 1rem
-    }
-  }
 
 `
 export const Transport = styled.div`
@@ -83,22 +74,13 @@ export const Transport = styled.div`
       
     font-size: 1.2rem;
     font-weight: 400;
+    text-align: end;
   }
 
   p + p {
     margin-top: 0.75rem;
   }
 
-  
-  @media (width <= 960px){
-    > h3 {
-      font-size: 1.2rem;
-    }
-    
-    > p {
-      font-size: 1rem
-    }
-  }
 `
 
 export const Image = styled.div`

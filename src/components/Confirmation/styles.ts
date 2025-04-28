@@ -5,9 +5,12 @@ export const Container = styled.section`
   width: 100%;
   height: auto;
   min-height: 100vh;
+  padding: 10rem 0 0;
+  display: flex;
+  flex-direction: column;
 
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_7};
-  padding: 10rem 0 0;
+
 
   @media (width <= 960px) {
     padding: 5rem 0 0;
@@ -15,12 +18,12 @@ export const Container = styled.section`
 `
 export const Content = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
 
   justify-content: space-between;
 
-  min-height: calc(100vh - 10rem);
-  height: 100%;
+  
 
 `
 
@@ -29,11 +32,12 @@ export const Text = styled.div`
   flex-direction: column;
   align-items: center;
   
-
+  
   width: 60%;
   margin: 0 auto;
   > h3 {
     text-transform: uppercase;
+    text-align: center;
 
     font-family: 'Avenir Book', sans-serif;
     color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
@@ -43,7 +47,7 @@ export const Text = styled.div`
 
   > p,a {
     font-family: 'Avenir Book', sans-serif;
-
+    text-align: center;
     font-size: 1.2rem;
     text-align: center;
     color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
@@ -71,17 +75,7 @@ export const Text = styled.div`
   }
 
   @media (width <= 960px) {
-    > h3 {
-      font-size: 1.2rem;
-    }
-
-    > p, a {
-      font-size: 1rem;
-    }
-
-    > a {
-      padding: 0.5rem 2rem;
-    }
+    width: 80%;
   
   }
 
@@ -91,13 +85,10 @@ export const Text = styled.div`
 export const Image = styled.div`
   width: auto;
   height: 20rem;
+  
+  background-image: url(${imageFlor2});
+  background-repeat: repeat;
+  background-size: auto;
+  background-position: center;
 
-  
-    background-image: url(${imageFlor2});
-    background-repeat: repeat;
-    background-size: auto;
-    background-position: center;
-
-  
-  
 `

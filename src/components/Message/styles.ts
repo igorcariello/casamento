@@ -81,6 +81,14 @@ export const Container = styled.section`
       left: 1rem;}
   }
 
+  @media (width <= 376px){
+    > img {
+      width: 6rem;
+      height: 4rem;
+    
+    }
+  }
+
  
 
 
