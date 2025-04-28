@@ -10,6 +10,7 @@ export const Container = styled.section`
   display: flex;
   flex-direction: column;
   position: relative;
+  justify-content: space-between;
   
   
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
@@ -54,8 +55,6 @@ export const Container = styled.section`
   @media (width <= 1200px){
 
     > img {
-      
-
       top: 2.5rem;
       left: 2.5rem;
     }
@@ -74,29 +73,20 @@ export const Container = styled.section`
   }
 
   @media (width <= 712px){
-    padding: 2rem 2rem;
-
     > img {
       width: 8rem;
       height: 6rem;
 
-      top: 1rem;
-      left: 1rem;
-    }
+      top: 4rem;
+      left: 1rem;}
   }
 
-  @media (width <= 376px){
-    padding: 1rem 1rem;
+ 
 
-    > img {
-      width: 4rem;
-      height: 3rem;
 
-      top: 1rem;
-      left: 0.5rem;
-    }
+  @media (height > 800px){
+    min-height: auto;
   }
-
 `
 
 export const Content = styled.div`
@@ -122,6 +112,8 @@ export const Content = styled.div`
   @media (width <= 376px){
     margin-left: 4rem;
   }
+
+  
 `
 
 
@@ -175,10 +167,10 @@ export const Text = styled.div`
     }
   }
 
-  @media (width <= 960px){
+  @media (width <= 376px){
 
     > a {
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 0.75rem;
     }
   }
 `

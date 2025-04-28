@@ -9,9 +9,14 @@ export function BackgroundHeader() {
     <Container id="navigation">
       <video autoPlay muted loop id="background-header">
         <source id="horizontal" src={backgroundVideo} type="video/mp4" />
+        Seu navegador não suporta vídeos HTML5
+      </video>
+
+      <video autoPlay muted loop id="background-vertical">
         <source id="vertical" src={backgroundVideoVertical} type="video/mp4" />
         Seu navegador não suporta vídeos HTML5
       </video>
+
       <Header>
         <img src={BI} alt="logo B I" />
         <nav>

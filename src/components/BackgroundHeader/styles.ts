@@ -20,11 +20,23 @@ export const Container = styled.section`
     object-fit: initial;
     z-index: 0;
 
+
   }
 
-  #vertical {
+  #background-vertical {
     display: none;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+    object-fit: initial;
+    z-index: 0;
   }
+
+  
 
   @media (width <= 960px) {
     padding: 2rem 2.5rem;
@@ -33,8 +45,12 @@ export const Container = styled.section`
   @media (width <= 712px) {
     padding: 2rem 1rem;
 
-    #horizontal {
+    #background-header {
       display: none;
+    }
+
+    #background-vertical {
+      display: block;
     }
   }
 `
