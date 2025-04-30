@@ -1,12 +1,12 @@
-import { Address } from "../../components/Address";
-import { BackgroundHeader } from "../../components/BackgroundHeader";
-import { Confirmation } from "../../components/Confirmation";
-import { Hosting } from "../../components/Hosting";
-import { Message } from "../../components/Message";
-import { OursHistory } from "../../components/OursHistory";
-import { Phrase } from "../../components/Phrase";
-import { Present } from "../../components/Present";
-import { TipsForGuests } from "../../components/TipsForGuests";
+import { Address } from "../../components/sections/Address";
+import { BackgroundHeader } from "../../components/sections/BackgroundHeader";
+import { Confirmation } from "../../components/sections/Confirmation";
+import { Hosting } from "../../components/sections/Hosting";
+import { Message } from "../../components/sections/Message";
+import { OursHistory } from "../../components/sections/OursHistory";
+import { Phrase } from "../../components/sections/Phrase";
+import { Present } from "../../components/sections/Present";
+import { TipsForGuests } from "../../components/sections/TipsForGuests";
 import { Container } from "./styles";
 
 export function Home() {

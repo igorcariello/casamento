@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import imageFlor2 from "../../assets/flor2.png";
+import imageFlor2 from "../../../assets/flor2.png";
 
 export const Container = styled.section`
   width: 100%;

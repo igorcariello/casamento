@@ -1,5 +1,5 @@
 import { Container, Content } from "./styles";
-import imagePhrase from "../../assets/flor1.png";
+import imagePhrase from "../../../assets/flor1.png";
 
 export function Phrase() {
   return (

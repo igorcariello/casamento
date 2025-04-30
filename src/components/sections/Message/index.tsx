@@ -1,6 +1,6 @@
 import { Container, Content, Signature, Text } from "./styles";
-import imageflor4 from "../../assets/flor4.png";
-import signature from "../../assets/beatrizeiagobranco.png";
+import imageflor4 from "../../../assets/flor4.png";
+import signature from "../../../assets/beatrizeiagobranco.png";
 import { FaChevronUp } from "react-icons/fa6";
 
 export function Message() {

@@ -1,8 +1,8 @@
 import { Container, Content, Header } from "./styles";
-import backgroundVideo from "../../assets/background-horizontal-1920x1080px.mp4";
-import BI from "../../assets/BI.png";
-import beatrizeiagoverde from "../../assets/biaeiagoverde.png";
-import backgroundVideoVertical from "../../assets/background-vertical-invertido-1080x1920px.mp4";
+import backgroundVideo from "../../../assets/background-horizontal-1920x1080px.mp4";
+import BI from "../../../assets/BI.png";
+import beatrizeiagoverde from "../../../assets/biaeiagoverde.png";
+import backgroundVideoVertical from "../../../assets/background-vertical-invertido-1080x1920px.mp4";
 
 export function BackgroundHeader() {
   return (

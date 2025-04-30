@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import home1 from "../../assets/home1.jpeg";
-import home2 from "../../assets/home2.jpeg";
-import home3 from "../../assets/home3.jpeg";
-import home4 from "../../assets/home4.jpeg";
-import home5 from "../../assets/home5.jpeg";
-import home6 from "../../assets/home6.jpeg";
-import home7 from "../../assets/home7.jpeg";
-import home8 from "../../assets/home8.jpeg";
-import home9 from "../../assets/home9.jpeg";
+import home1 from "../../../assets/home1.jpeg";
+import home2 from "../../../assets/home2.jpeg";
+import home3 from "../../../assets/home3.jpeg";
+import home4 from "../../../assets/home4.jpeg";
+import home5 from "../../../assets/home5.jpeg";
+import home6 from "../../../assets/home6.jpg";
+import home7 from "../../../assets/home7.jpg";
+import home8 from "../../../assets/home8.jpg";
+import home9 from "../../../assets/home9.jpeg";
 
 export const Container = styled.section`
   width: 100%;
@@ -32,7 +32,7 @@ export const Container = styled.section`
 export const Imagens = styled.div`
   width: 60%;
   flex-wrap: wrap;
-  margin-top: 5rem;
+  
 
   display: flex;
   align-items: center;
@@ -123,6 +123,10 @@ export const Imagens = styled.div`
 
   @media (width <= 960px) {
     width: 80%;
+  }
+
+  @media (width <= 712px) {
+    display:none;
   }
 `
 

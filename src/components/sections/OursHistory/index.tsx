@@ -1,3 +1,4 @@
+import { Carousel } from "../../Carousel";
 import { Container, Content, Imagens } from "./styles";
 
 export function OursHistory() {
@@ -58,6 +59,7 @@ export function OursHistory() {
         <div id="home8"></div>
         <div id="home9"></div>
       </Imagens>
+      <Carousel />
     </Container>
   );
 }
