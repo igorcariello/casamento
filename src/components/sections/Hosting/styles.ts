@@ -87,6 +87,18 @@ export const Hotel = styled.div`
     font-size: 1.2rem;
   }
 
+  > h4 {
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+
   > p {
     margin-top: 1rem;
   }

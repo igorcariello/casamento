@@ -26,7 +26,7 @@ export function Message() {
       </Content>
       <a href="#navigation">
         <FaChevronUp size={20} color="#fff" />
-        Voltar ao top
+        Voltar ao topo
       </a>
     </Container>
   );

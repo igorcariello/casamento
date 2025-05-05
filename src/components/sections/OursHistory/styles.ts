@@ -32,12 +32,13 @@ export const Container = styled.section`
 export const Imagens = styled.div`
   width: 60%;
   flex-wrap: wrap;
+  margin-top: 2rem;
   
 
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 3rem;
+  gap: 4rem;
   
   
   
