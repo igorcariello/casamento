@@ -26,8 +26,6 @@ export function Carousel() {
           autoplay: true,
           pagination: true,
           arrows: false,
-          width: "80%",
-          heightRatio: 1.2,
         }}
         aria-label="Meus Slides"
       >

@@ -8,14 +8,22 @@ export const Container = styled.div`
   @media (width <= 712px) {
     display: flex;
     justify-content: center;
+
+    .splide {
+      width: 80%;
+      height: auto;
+      border-radius: 8px;
+
+      
+    }
   }
 `
 
 export const SlideImage = styled.img`
   width: 100%;
-  height: auto;
-  aspect-ratio: 9 / 16;
   object-fit: cover;
   border-radius: 8px;
+  aspect-ratio: 4/5;
   display: block;
+  inset: 0;
 `
