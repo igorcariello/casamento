@@ -161,7 +161,7 @@ export const MobileMenuOverlay = styled.div<MobileMenuOverlay>`
     position: fixed;
     top: 0;
     left: 0;
-    width: 50%;
+    width: 70%;
     height: 100vh;
     
     background-color: white;
@@ -180,8 +180,8 @@ export const MobileMenuOverlay = styled.div<MobileMenuOverlay>`
       width: 2rem;
       height: 2rem;
       position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
+      top: 1rem;
+      right: 1rem;
       
       color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
     }

@@ -54,16 +54,24 @@ export function Header({ visible, floating }: HeaderProps) {
           <nav>
             <ul>
               <li>
-                <a href="#oursHistory">Nossa História</a>
+                <a onClick={toggleMenu} href="#oursHistory">
+                  Nossa História
+                </a>
               </li>
               <li>
-                <a href="#tipsForGuests">Dicas Para Convidados</a>
+                <a onClick={toggleMenu} href="#tipsForGuests">
+                  Dicas Para Convidados
+                </a>
               </li>
               <li>
-                <a href="#confirmation">Confirmação de Presença</a>
+                <a onClick={toggleMenu} href="#confirmation">
+                  Confirmação de Presença
+                </a>
               </li>
               <li>
-                <a href="#present">Lista de Presentes</a>
+                <a onClick={toggleMenu} href="#present">
+                  Lista de Presentes
+                </a>
               </li>
             </ul>
           </nav>

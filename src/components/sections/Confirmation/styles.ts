@@ -15,6 +15,10 @@ export const Container = styled.section`
   @media (width <= 960px) {
     padding: 5rem 0 0;
   }
+
+  @media (width < 712px) {
+    scroll-margin-top: 5rem;
+  }
 `
 export const Content = styled.div`
   display: flex;

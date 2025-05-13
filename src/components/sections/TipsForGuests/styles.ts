@@ -13,6 +13,10 @@ export const Container = styled.section`
   padding-left: clamp(0.5rem, 10vw, 50rem);
   padding-right: clamp(0.5rem, 10vw, 50rem);
 
+  @media (width < 712px) {
+    scroll-margin-top: 5rem;
+  }
+
 `
 export const Content = styled.div`
   display: flex;

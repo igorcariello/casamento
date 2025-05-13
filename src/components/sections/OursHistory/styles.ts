@@ -27,6 +27,10 @@ export const Container = styled.section`
   justify-content: center;
   align-items: center;
 
+  @media (width < 712px) {
+    scroll-margin-top: 5rem;
+  }
+
 `
 
 export const Imagens = styled.div`
