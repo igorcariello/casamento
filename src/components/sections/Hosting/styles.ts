@@ -6,7 +6,12 @@ export const Container = styled.section`
   min-height: 100vh;
 
   display: flex;
-  padding: 10rem 0;
+
+  padding-top: clamp(2rem, 5vw, 20rem);
+  padding-bottom: clamp(2rem, 5vw, 20rem);
+  padding-left: clamp(0.5rem, 10vw, 50rem);
+  padding-right: clamp(0.5rem, 10vw, 50rem);
+  
   justify-content: center;
   
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_6};
@@ -17,9 +22,7 @@ export const Container = styled.section`
     font-weight: 400;
   }
 
-  @media (width <= 960px) {
-    padding: 5rem 2rem;
-  }
+
 `
 
 export const Content = styled.div`
@@ -27,15 +30,12 @@ export const Content = styled.div`
   flex-direction: column;
   gap: 3rem;
 
-  width: 60%;
-
+  
+  max-width: 62.5rem;
   margin: 0 auto;
 
   width: 60%;
   
-  @media (width <= 960px) {
-    width: 80%;
-  }
 `
 
 
@@ -91,7 +91,7 @@ export const Hotel = styled.div`
 
     a {
       color: white;
-      text-decoration: none;
+      text-decoration: underline;
     }
 
     a:hover {

@@ -7,17 +7,21 @@ export const Container = styled.section`
 
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_2};
 
-  padding: 2rem 5rem;
+  padding-top: clamp(2rem, 5vw, 2rem);
+  padding-bottom: clamp(2rem, 5vw, 2rem);
+  padding-left: clamp(0.5rem, 10vw, 50rem);
+  padding-right: clamp(0.5rem, 10vw, 50rem);
+
   position: relative;
 
-  #background-header{
+  #background-horizontal{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     inset: 0;
-    object-fit: initial;
+    object-fit: fill;
     z-index: 0;
 
 
@@ -36,15 +40,10 @@ export const Container = styled.section`
     z-index: 0;
   }
 
-  
-
-  @media (width <= 960px) {
-    padding: 2rem 2.5rem;
-  }
 
   @media (width <= 712px) {
-    padding: 2rem 1rem;
-
+    padding-top: 5rem;
+    
     #background-header {
       display: none;
     }
@@ -55,72 +54,11 @@ export const Container = styled.section`
   }
 `
 
-export const Header = styled.header`
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  justify-content: space-between;
-  align-items: center;
+export const ContentWrapper = styled.div`
+  max-width: 62.5rem;
+  margin: 0 auto;
 
-  position: relative;
-  overflow: hidden;
-  height: 100%;
   z-index: 1;
-
-  > img {
-    width: 4rem;
-    height: 3rem;
-
-    @media (width < 712px) {
-      width: 3rem;
-      height: 2rem;
-    }
-
-    @media (width < 376px) {
-      width: 2rem;
-      height: 1.5rem;
-    }
-  }
-
-
-  > nav {
-    > ul {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      gap: 1rem;
-
-      li {
-        list-style: none;
-        text-transform: uppercase;
-        
-        font-family: 'Avenir Book', sans-serif;
-        font-weight: 500;
-        font-size: 0.75rem;
-        text-align: center;
-
-        
-        cursor: pointer;
-
-        @media (width < 712px) {
-          font-size: 0.65rem;
-        }
-
-        @media (width < 400px) {
-          font-size: 0.5rem;
-        }
-        
-        a {
-          text-decoration: none;
-          color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
-        }
-
-        &:hover {
-          filter: brightness(2.5);
-          transition: all 0.3s ease-in-out;
-        }
-      }
-    }
-  }
 
 `
 

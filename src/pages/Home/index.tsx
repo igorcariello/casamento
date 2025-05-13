@@ -1,3 +1,4 @@
+import { FloatingHeader } from "../../components/FloatingHeader.jsx";
 import { Address } from "../../components/sections/Address";
 import { BackgroundHeader } from "../../components/sections/BackgroundHeader";
 import { Confirmation } from "../../components/sections/Confirmation";
@@ -13,6 +14,7 @@ export function Home() {
   return (
     <Container>
       <BackgroundHeader />
+      <FloatingHeader />
       <Phrase />
       <Address />
       <OursHistory />

@@ -17,6 +17,7 @@ export const Container = styled.div`
 export const SlideImage = styled.img`
   width :100%;
   object-fit: cover;
+  min-height:15rem;
   height: 100%;
   border-radius: 8px;
 `

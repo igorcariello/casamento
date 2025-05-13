@@ -7,8 +7,7 @@ export const Container = styled.section`
 
   padding: 2rem;
 
-  
-  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_2};
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_4};
 
   display: flex;
   justify-content: center;

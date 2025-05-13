@@ -13,7 +13,11 @@ export const Container = styled.section`
   width: 100%;
   height: auto;
   min-height: 100vh;
-  padding: 10rem 0;
+  
+  padding-top: clamp(2rem, 5vw, 20rem);
+  padding-bottom: clamp(2rem, 5vw, 20rem);
+  padding-left: clamp(0.5rem, 10vw, 50rem);
+  padding-right: clamp(0.5rem, 10vw, 50rem);
 
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_4};
 
@@ -23,29 +27,24 @@ export const Container = styled.section`
   justify-content: center;
   align-items: center;
 
-  @media (width <= 960px) {
-    padding: 5rem 0;
-  }
-
 `
 
 export const Imagens = styled.div`
-  width: 60%;
-  flex-wrap: wrap;
-  margin-top: 2rem;
-  
+  max-width: 62.5rem;
+  margin: 2rem auto 0;
 
+  flex-wrap: wrap;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4rem;
+  gap: 2rem 6rem;
   
   
   
   #home1 {
     border-radius: 4px;
-    width: 12rem;
-    height: 15rem;
+    width: 16rem;
+    height: 20rem;
     background-image: url(${home1});
     background-size: cover;
     background-position: center;
@@ -53,16 +52,16 @@ export const Imagens = styled.div`
 
   #home2 {
     border-radius: 4px;    
-    width: 12rem;
-    height: 15rem;
+    width: 16rem;
+    height: 20rem;
     background-image: url(${home2});
     background-size: cover;
   }
 
   #home3 {
     border-radius: 4px;
-    width: 12rem;
-    height: 15rem;
+    width: 16rem;
+    height: 20rem;
     background-image: url(${home3});
     background-size: cover;
     background-position: center;
@@ -70,8 +69,8 @@ export const Imagens = styled.div`
  
   #home4 {
     border-radius: 4px;
-    width: 12rem;
-    height: 15rem;
+    width: 16rem;
+    height: 20rem;
     background-image: url(${home4});
     background-size: cover;
     background-position: center;
@@ -79,8 +78,8 @@ export const Imagens = styled.div`
 
   #home5 {
     border-radius: 4px;
-    width: 12rem;
-    height: 15rem;
+    width: 16rem;
+    height: 20rem;
     background-image: url(${home5});
     background-size: cover;
     background-position: center;
@@ -88,8 +87,8 @@ export const Imagens = styled.div`
 
   #home6 {
     border-radius: 4px;
-    width: 12rem;
-    height: 15rem;
+    width: 16rem;
+    height: 20rem;
     background-image: url(${home6});
     background-size: cover;
     background-position: center;
@@ -97,8 +96,8 @@ export const Imagens = styled.div`
 
   #home7 {
     border-radius: 4px;
-    width: 12rem;
-    height: 15rem;
+    width: 16rem;
+    height: 20rem;
     background-image: url(${home7});
     background-size: cover;
     background-position: center;
@@ -106,8 +105,8 @@ export const Imagens = styled.div`
 
   #home8 {
     border-radius: 4px;
-    width: 12rem;
-    height: 15rem;
+    width: 16rem;
+    height: 20rem;
     background-image: url(${home8});
     background-size: cover;
     background-position: center;
@@ -115,15 +114,11 @@ export const Imagens = styled.div`
 
   #home9 {
     border-radius: 4px;
-    width: 12rem;
-    height: 15rem;
+    width: 16rem;
+    height: 20rem;
     background-image: url(${home9});
     background-size: cover;
     background-position: center;
-  }
-
-  @media (width <= 960px) {
-    width: 80%;
   }
 
   @media (width <= 712px) {
@@ -134,8 +129,8 @@ export const Imagens = styled.div`
 
 
 export const Content = styled.div`
+  max-width: 62.5rem;
   margin: 0 auto;
-  width: 60%;
 
   > p {
     font-size: 1.5rem;
@@ -148,8 +143,6 @@ export const Content = styled.div`
   }
 
   @media (width <= 960px) {
-    width: 80%;
-
     > p  {
       font-size: 1.2rem;
     }

@@ -6,7 +6,9 @@ export function TipsForGuests() {
       <Content>
         <DressCode>
           <h3>Dress Code:</h3>
-          <p>Esqueça as gravatas e os saltos finos!</p>
+          <p>
+            Esqueça as gravatas e os saltos finos, mas sem perder a elegância!
+          </p>
           <p>Traga uma rasteirinha para a gente dançar muito.</p>
           <p>Queremos todos confortáveis para curtir um fim de tarde leve</p>
           <p>e animado em meio à natureza.</p>
