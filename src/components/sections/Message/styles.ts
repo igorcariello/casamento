@@ -25,7 +25,7 @@ export const Container = styled.section`
   
   }
 
-  a[href="#navigation"] {
+  a[href="#background-header"] {
     margin-top: 3rem;
 
     font-size: 1rem;

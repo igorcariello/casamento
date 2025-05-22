@@ -9,7 +9,10 @@ export function Message() {
       <img src={imageflor4} alt="" />
       <Content>
         <Text>
-          <a href="#"> Deixe sua mensagem </a>
+          <a href="/messages" target="_blank">
+            {" "}
+            Deixe sua mensagem{" "}
+          </a>
           <p>"Quem não gosta de samba, bom sujeito não é"</p>
           <p>Queremos sentir o carinho de vocês! Deixe uma mensagem,</p>
           <p>
@@ -24,7 +27,7 @@ export function Message() {
           <img className="signature-image" src={signature} alt="" />
         </Signature>
       </Content>
-      <a href="#navigation">
+      <a href="#background-header">
         <FaChevronUp size={20} color="#fff" />
         Voltar ao topo
       </a>

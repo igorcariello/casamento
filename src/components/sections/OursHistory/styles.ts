@@ -152,3 +152,16 @@ export const Content = styled.div`
     }
   }
 `
+
+export const LoadMore = styled.a`
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  text-decoration: none;
+  align-items: center;
+  margin-top: 4rem;
+
+  color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+
+  cursor: pointer;
+`

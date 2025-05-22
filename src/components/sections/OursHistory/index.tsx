@@ -1,5 +1,6 @@
+import { FaChevronDown } from "react-icons/fa6";
 import { Carousel } from "../../Carousel";
-import { Container, Content, Imagens } from "./styles";
+import { Container, Content, Imagens, LoadMore } from "./styles";
 
 export function OursHistory() {
   return (
@@ -60,6 +61,13 @@ export function OursHistory() {
         <div id="home9"></div>
       </Imagens>
       <Carousel />
+      <LoadMore href="/gallery" target="_blank">
+        <span>Carregar mais</span>
+        <FaChevronDown
+          size={20}
+          color="${({theme}) => theme.COLORS.BACKGROUND_8}"
+        />
+      </LoadMore>
     </Container>
   );
 }
