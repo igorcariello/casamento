@@ -11,7 +11,7 @@ export default {
     BACKGROUND_9: '#8c9082',
 
     FONT_COLOR_PRIMARY: '#444C35',
-    FONT_COLOR_SECUNDARY: '#FFFFFF'
+    FONT_COLOR_SECUNDARY: '#FFFFFF',
 
   }
 }

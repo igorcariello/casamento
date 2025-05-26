@@ -45,12 +45,16 @@ export const Form = styled.form`
 
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   gap: 1.5rem;
 `
 
 export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 60%;
 
   label {
     margin-bottom: 0.75rem;
@@ -60,7 +64,7 @@ export const InputWrapper = styled.div`
 
   input {
 
-    width: 50%;
+    width: 100%;
     padding: 0.5rem 1rem;
     border: 1px solid ${({ theme }) => theme.COLORS.BACKGROUND_8};
     border-radius: 8px;
@@ -81,6 +85,7 @@ export const InputWrapper = styled.div`
 
     &::placeholder{
       font-size: 1rem;
+
     }
 
     @media (width <= 712px) {
@@ -88,41 +93,14 @@ export const InputWrapper = styled.div`
     }
   }
 
-
-`
-
-export const TextAreaWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  label {
-    margin-bottom: 0.75rem;
-    font-weight: 600;
-    color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+  @media (width <= 960px) {
+    width: 80%;
   }
 
-  textarea {
-    padding: 0.5rem 1rem;
-    border: 1px solid ${({ theme }) => theme.COLORS.BACKGROUND_8};
-    border-radius: 8px;
-
-    min-height: 10rem;
-    height: 40vh;
-
-    font-size: 1rem;
-    font-weight: 600;
-    
-    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_4};
-    color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
-    transition: border-color 0.2s, box-shadow 0.2s;
-  
-    
-    &:focus {
-    border-color: ${({ theme }) => theme.COLORS.BACKGROUND_6};
-    box-shadow: 0 0 0 3px rgba(108, 99,255, 0.2);
-    outline: none;
-    }
+  @media (width <= 712px) {
+    width: 100%;
   }
+
 `
 
 export const Button = styled.button`

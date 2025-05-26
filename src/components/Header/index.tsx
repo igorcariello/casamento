@@ -73,6 +73,11 @@ export function Header({ visible, floating }: HeaderProps) {
                   Lista de Presentes
                 </a>
               </li>
+              <li>
+                <a onClick={toggleMenu} href="#message">
+                  Mensagens
+                </a>
+              </li>
             </ul>
           </nav>
         </MobileMenuOverlay>

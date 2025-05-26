@@ -34,6 +34,8 @@ export function Messages() {
   }
 
   async function handleSendMessage(data: MessageFormInputs) {
+    setIsSubmitting(true);
+
     const { name, message } = data;
 
     try {

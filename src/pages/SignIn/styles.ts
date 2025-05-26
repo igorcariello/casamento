@@ -13,29 +13,18 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
-  >div {
-    margin-bottom: 2rem;
-    width: 100%;
-    max-width: 62.5rem;
+  h1 {
+    color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
   }
 
 `
-export const BackToHome = styled.a`
-  color: white;
 
-  display: flex;
-  align-items: center;
-
-  width: fit-content;
-
-  cursor: pointer;
-
-`
 
 export const Form = styled.form`
-  width: 100%;
+  width: 60%;
   max-width: 62.5rem;
   margin: 0 auto;
+  min-height: 80vh;
 
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_2};
 
@@ -45,12 +34,24 @@ export const Form = styled.form`
 
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   gap: 1.5rem;
+
+   > a {
+    margin-top: 2rem;
+    color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+    font-weight: 600;
+    text-decoration: underline;
+    
+  }
 `
 
 export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width:100%;
 
   label {
     margin-bottom: 0.75rem;
@@ -60,7 +61,7 @@ export const InputWrapper = styled.div`
 
   input {
 
-    width: 50%;
+    width: 100%;
     padding: 0.5rem 1rem;
     border: 1px solid ${({ theme }) => theme.COLORS.BACKGROUND_8};
     border-radius: 8px;
@@ -81,6 +82,7 @@ export const InputWrapper = styled.div`
 
     &::placeholder{
       font-size: 1rem;
+
     }
 
     @media (width <= 712px) {
@@ -88,41 +90,14 @@ export const InputWrapper = styled.div`
     }
   }
 
-
-`
-
-export const TextAreaWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  label {
-    margin-bottom: 0.75rem;
-    font-weight: 600;
-    color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+  @media (width <= 960px) {
+    width: 80%;
   }
 
-  textarea {
-    padding: 0.5rem 1rem;
-    border: 1px solid ${({ theme }) => theme.COLORS.BACKGROUND_8};
-    border-radius: 8px;
-
-    min-height: 10rem;
-    height: 40vh;
-
-    font-size: 1rem;
-    font-weight: 600;
-    
-    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_4};
-    color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
-    transition: border-color 0.2s, box-shadow 0.2s;
-  
-    
-    &:focus {
-    border-color: ${({ theme }) => theme.COLORS.BACKGROUND_6};
-    box-shadow: 0 0 0 3px rgba(108, 99,255, 0.2);
-    outline: none;
-    }
+  @media (width <= 712px) {
+    width: 100%;
   }
+
 `
 
 export const Button = styled.button`
@@ -136,8 +111,7 @@ export const Button = styled.button`
   border: none;
   border-radius: 8px;
 
-  width: 30%;
-  align-self: flex-end;
+  align-self: center;
 
   transition: background-color 0.2s, transform 0.2s;
 

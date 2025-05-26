@@ -12,7 +12,7 @@ export function Confirmation() {
           </p>
           <p>até o dia 10 de Setembro de 2025.</p>
 
-          <a href="#">Clique aqui para confirmar presença</a>
+          <a href="/confirmation">Clique aqui para confirmar presença</a>
         </Text>
         <Image>
           <div></div>

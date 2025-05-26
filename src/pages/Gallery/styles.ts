@@ -33,8 +33,20 @@ export const Header = styled.header`
     color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
     
     margin-bottom: 2rem;
+    text-align: center;
+
+
+    @media(width <= 712px){
+      font-size: 1.5rem;
+    }
 
   }
+  
+  @media(width <= 560px){
+    flex-direction: column;
+    gap: 1rem;
+  }
+
 
 `
 export const BackToHome = styled.a`
@@ -48,6 +60,14 @@ export const BackToHome = styled.a`
 
   left: 0;
   cursor: pointer;
+
+  @media (width <= 712px){
+    font-size: 0.75rem;
+  }
+
+  @media (width <= 560px){
+    position: unset;
+  }
 `
 
 export const PhotosWrapper = styled.div`
@@ -81,6 +101,14 @@ export const Photo = styled.img`
     transform: scale(1.02);
     box-shadow: 0 8px 16px rgba(0,0,0,0.3);
   }
+`
+
+export const Root = styled(Dialog.Root)`
+
+  @media (width <= 712px){
+    display: none;
+  }
+
 `
 
 export const Overlay = styled(Dialog.Overlay)`
