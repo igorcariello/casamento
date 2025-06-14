@@ -1,6 +1,13 @@
 import * as z from "zod";
 
-import { Button, Container, Form, InputWrapper } from "./styles";
+import {
+  Button,
+  ButtonBack,
+  Buttons,
+  Container,
+  Form,
+  InputWrapper,
+} from "./styles";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "../../lib/axios";
@@ -44,6 +51,10 @@ export function EditGuest() {
 
   function goGuest() {
     navigate("/guests");
+  }
+
+  function handleBack() {
+    navigate(-1);
   }
 
   async function handleEditGuest(data: editGuestFormInputs) {
@@ -141,9 +152,14 @@ export function EditGuest() {
             <span>{errors.confirmed_guests.message}</span>
           )}
         </InputWrapper>
-        <Button type="submit" title="Salvar alterações">
-          Salvar alterações
-        </Button>
+        <Buttons>
+          <ButtonBack onClick={handleBack} type="button" title="Voltar">
+            Voltar
+          </ButtonBack>
+          <Button type="submit" title="Salvar alterações">
+            Salvar alterações
+          </Button>
+        </Buttons>
       </Form>
     </Container>
   );

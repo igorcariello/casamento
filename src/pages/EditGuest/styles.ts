@@ -95,9 +95,48 @@ export const InputWrapper = styled.div`
 
 `
 
+export const Buttons = styled.div`
+  display: flex;
+  gap: 2rem;
+
+`
+
 export const Button = styled.button`
   padding: 1rem 2rem;
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_6};
+  color: white;
+  margin-top: 2rem;
+
+  font-weight: 600;
+  font-size: 1rem;
+
+  border: none;
+  border-radius: 8px;
+
+  align-self: center;
+
+  transition: background-color 0.2s, transform 0.2s;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  @media (width <= 712px) {
+    width: 50%;
+  }
+
+  @media (width <= 560px) {
+    width: 100%;
+  }
+`
+
+export const ButtonBack = styled.button`
+  padding: 1rem 2rem;
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
   color: white;
   margin-top: 2rem;
 

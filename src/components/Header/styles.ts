@@ -23,10 +23,9 @@ export const Container = styled.header<HeaderProps>`
   margin-top: ${({ floating }) => (floating ? "0" : "2rem")};
 
   z-index: 100;
-
-
   display: flex;
   justify-content: center;
+  align-items: center;
 
   @media ( width <= 712px) {
     margin-top: 0;
@@ -49,20 +48,22 @@ export const Content = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: space;
   margin: 0 auto;
 
   overflow: hidden;
 
-
+  display: flex;
+  align-items: center;
+ 
   position: relative;
 
   max-width: 62.5rem;
 
   > a {
-    margin: 0 auto;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    
     
     > img {
       width: 4rem;
@@ -82,7 +83,7 @@ export const Content = styled.div`
         text-transform: uppercase;
         
         font-family: 'Avenir Book', sans-serif;
-        font-weight: 500;
+        font-weight: 600;
         font-size: 0.75rem;
         text-align: center;
 

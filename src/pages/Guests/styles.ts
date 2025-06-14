@@ -3,7 +3,10 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
   min-height: 100vh;
-  padding: 4rem 2rem;
+  padding-top: clamp(2rem, 5vw, 2rem);
+  padding-bottom: clamp(2rem, 5vw, 2rem);
+  padding-left: clamp(0.5rem, 10vw, 50rem);
+  padding-right: clamp(0.5rem, 10vw, 50rem);
   
   display: flex;
   flex-direction: column;
@@ -27,10 +30,6 @@ export const Button = styled.button`
 
   color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
   font-weight: 600;
-
-  @media(width < 560px) {
-    width: 100%;
-  }
 
 `
 
@@ -107,7 +106,7 @@ export const Actions = styled.td`
   justify-content: center;
 `
 
-export const UnconfirmButton = styled.button`
+export const DeleteButton = styled.button`
   background-color: transparent;
   border: none;
   color: red;
@@ -165,12 +164,17 @@ export const Card = styled.div`
     color: ${({ theme }) => theme.COLORS.FONT_COLOR_PRIMARY};
   }
 
-  button {
-    position: absolute;
-    right: 0.5rem;
-    top: 0.5rem;
-    align-self: flex-end;
-  }
+
+`
+
+export const ActionButtons = styled.div`
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 

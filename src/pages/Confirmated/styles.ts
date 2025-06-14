@@ -3,7 +3,10 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
   min-height: 100vh;
-  padding: 4rem 2rem;
+  padding-top: clamp(2rem, 5vw, 2rem);
+  padding-bottom: clamp(2rem, 5vw, 2rem);
+  padding-left: clamp(0.5rem, 10vw, 50rem);
+  padding-right: clamp(0.5rem, 10vw, 50rem);
 
   display: flex;
   flex-direction: column;

@@ -1,4 +1,4 @@
-import { Container, Content, Image, Text } from "./styles";
+import { Container, Content, GoConfirmationPage, Image, Text } from "./styles";
 
 export function Confirmation() {
   return (
@@ -12,7 +12,9 @@ export function Confirmation() {
           </p>
           <p>até o dia 10 de Setembro de 2025.</p>
 
-          <a href="/confirmation">Clique aqui para confirmar presença</a>
+          <GoConfirmationPage to="/confirmation">
+            Clique aqui para confirmar presença
+          </GoConfirmationPage>
         </Text>
         <Image>
           <div></div>

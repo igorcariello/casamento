@@ -66,7 +66,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 15rem auto;
+  margin: 10rem auto;
   position: relative;
   z-index: 1;
 

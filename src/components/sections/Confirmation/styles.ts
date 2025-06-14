@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import imageFlor2 from "../../../assets/florteste.png";
+import { Link } from "react-router-dom";
 
 export const Container = styled.section`
   width: 100%;
@@ -62,37 +63,47 @@ export const Text = styled.div`
     margin-top: 3rem;
   }
 
+`
 
-  > a{
-    margin-top: 3rem;
-    cursor: pointer;
+export const GoConfirmationPage = styled(Link)`
+  
+  margin-top: 3rem;
+  cursor: pointer;
 
-    padding: 0.5rem 3rem;
-    border: 1px solid ${({ theme }) => theme.COLORS.BACKGROUND_8};
+  padding: 0.5rem 3rem;
+  border: 1px solid ${({ theme }) => theme.COLORS.BACKGROUND_8};
 
-    &:hover{
-      filter: brightness(0.4);
-      transform: scale(1.05);
-      transition: all 0.3s ease-in-out;
+&:hover{
+  filter: brightness(0.4);
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
 
-    }
-  }
-
+}
   @media (width <= 960px) {
     width: 80%;
-  
+    padding: 0.5rem 1rem;
+
   }
 
 
 `
 
+
+
+
 export const Image = styled.div`
-  width: auto;
+  width: 100%;
   height: 20rem;
-  
-  background-image: url(${imageFlor2});
-  background-repeat: repeat;
-  background-size: auto;
-  background-position: center;
+
+  div {
+    margin: 0 auto;
+    height: 20rem;
+    max-width: 62.5rem;
+
+    background-image: url(${imageFlor2});
+    background-repeat: repeat;
+    background-size: auto;
+    background-position: center;
+  }
 
 `

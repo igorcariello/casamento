@@ -19,7 +19,7 @@ export const Container = styled.section`
     margin-bottom: 3rem;
     
     > img {
-      height: 15rem;
+      height: 10rem;
       margin: 0 auto;
 
     }

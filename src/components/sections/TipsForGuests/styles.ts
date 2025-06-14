@@ -89,7 +89,7 @@ export const Image = styled.div`
   background-size: contain ;
   background-position: center;
   background-repeat: no-repeat;
-  width: 15rem;
-  height: 15rem;
+  width: 12rem;
+  height: 12rem;
 
 `

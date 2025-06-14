@@ -1,99 +1,79 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.section`
   width: 100%;
-  height: auto;
   min-height: 100vh;
   
-  padding: 5rem 3rem 5rem 5rem;
+  padding: 5rem 2rem;
 
   display: flex;
   flex-direction: column;
-  position: relative;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
   
   
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
   
-  > img {
-    width: 20rem;
-    height: 16rem;
+`
+
+export const MainContentWrapper = styled.div`
+  position: relative;
+  max-width: 62.5rem;
+  width: 100%;
+
+
+`
+
+export const FloralImage = styled.img`
+  width: 14rem;
+  height: auto;
+
+  position: absolute;
+  z-index: 0;
   
-    top: 5rem;
-    left: 10rem;
-    position: absolute;
-  
+  top: 2rem;
+  left: 6rem;
+
+  @media (max-width: 960px) {
+    width: 12rem;
+    left: 4rem;
   }
 
-  a[href="#background-header"] {
-    margin-top: 3rem;
-
-    font-size: 1rem;
-    font-family: 'Avenir Book', sans-serif;
-    font-weight: 400;
-    color: ${({ theme }) => theme.COLORS.FONT_COLOR_SECUNDARY};
-    
-    text-decoration: none;
-    text-transform: uppercase;
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-    @media (width <= 960px){
-      
-      > svg {
-        width: 1rem;
-        height: 1rem;
-      }
-
-      font-size: 0.75rem;
-    }
-
+  @media (max-width: 712px) {
+    width: 9rem;
+    left: -2rem;
   }
 
-  @media (width <= 1200px){
-
-    > img {
-      top: 2.5rem;
-      left: 2.5rem;
-    }
-  }
-  
-  @media (width <= 960px){
-    padding: 5rem 3rem;
-
-    > img {
-      width: 12rem;
-      height: 8rem;
-
-      top: 2.5rem;
-      left: 2.5rem;
-    }
+  @media (max-width: 480px) {
+    width: 7rem;
+    left: -2rem;
   }
 
-  @media (width <= 712px){
-    > img {
-      width: 8rem;
-      height: 6rem;
 
-      top: 4rem;
-      left: 1rem;}
-  }
+`
 
-  @media (width <= 376px){
-    > img {
-      width: 6rem;
-      height: 4rem;
-    
-    }
-  }
+export const GoToMessagePage = styled(Link)`
+  margin-bottom: 3rem;
+  cursor: pointer;
 
- 
+  display: inline-block;
+  text-align: center;
 
+  font-family: 'Avenir Book', sans-serif;
+  font-weight: 400;
+  font-size: 1.2rem;
 
-  @media (height > 800px){
-    min-height: auto;
+  color: ${({ theme }) => theme.COLORS.FONT_COLOR_SECUNDARY};
+
+  padding: 0.5rem 3rem;
+  border: 1px solid ${({ theme }) => theme.COLORS.FONT_COLOR_SECUNDARY};
+
+  &:hover{
+    filter: brightness(0.8);
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+
   }
 `
 
@@ -102,6 +82,8 @@ export const Content = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 1;
 
   margin-left: 22rem;
 
@@ -118,7 +100,7 @@ export const Content = styled.div`
   }
 
   @media (width <= 376px){
-    margin-left: 4rem;
+    margin-left: 5.5rem;
   }
 
   
@@ -129,27 +111,7 @@ export const Content = styled.div`
 export const Text = styled.div`
 
 > a{
-    margin-bottom: 3rem;
-    cursor: pointer;
-
-    display: inline-block;
-    text-align: center;
-
-    font-family: 'Avenir Book', sans-serif;
-    font-weight: 400;
-    font-size: 1.2rem;
-
-    color: ${({ theme }) => theme.COLORS.FONT_COLOR_SECUNDARY};
-
-    padding: 0.5rem 3rem;
-    border: 1px solid ${({ theme }) => theme.COLORS.FONT_COLOR_SECUNDARY};
-
-    &:hover{
-      filter: brightness(0.8);
-      transform: scale(1.05);
-      transition: all 0.3s ease-in-out;
-
-    }
+    
   }
 
   > p {
@@ -208,4 +170,30 @@ export const Signature = styled.div`
     }
   }
   
+`
+
+export const ScrollToTopLink = styled.a`
+margin-top: 3rem;
+
+    font-size: 1rem;
+    font-family: 'Avenir Book', sans-serif;
+    font-weight: 400;
+    color: ${({ theme }) => theme.COLORS.FONT_COLOR_SECUNDARY};
+    
+    text-decoration: none;
+    text-transform: uppercase;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    @media (width <= 960px){
+      
+      > svg {
+        width: 1rem;
+        height: 1rem;
+      }
+
+      font-size: 0.75rem;
+    }
 `

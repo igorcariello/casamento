@@ -3,7 +3,6 @@ import { api } from "../../lib/axios";
 import {
   Container,
   Table,
-  UnconfirmButton,
   Title,
   CardList,
   Card,
@@ -11,12 +10,16 @@ import {
   Button,
   EditButton,
   Actions,
+  ActionButtons,
+  DeleteButton,
 } from "./styles";
 import { IoCloseOutline } from "react-icons/io5";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { useNavigate } from "react-router-dom";
 import { LiaEdit } from "react-icons/lia";
+import { AdminHeader } from "../../components/AdminHeader";
+import { Loader } from "../../components/Loader";
 
 interface Guests {
   id: number;
@@ -28,14 +31,36 @@ interface Guests {
 
 export function Guests() {
   const [guestsList, setGuestsList] = useState<Guests[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
 
-  async function fetchConfirmated() {
+  async function fetchGuests() {
     try {
+      setIsLoading(true);
       const response = await api.get<Guests[]>("/guests");
       setGuestsList(response.data);
     } catch (error) {
       console.error("Erro ao buscar confirmados", error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  async function handleDeleteGuest(id: number) {
+    const confirmeDelete = window.confirm(
+      "Tem certeza que deseja excluir este convidado?"
+    );
+
+    if (!confirmeDelete) return;
+
+    try {
+      await api.delete(`guests/${id}`);
+      alert("Convidado excluído com sucesso");
+      fetchGuests();
+    } catch (error) {
+      console.error("Erro ao excluir convidado", error);
+      alert("Erro ao excluir convidado");
     }
   }
 
@@ -75,11 +100,16 @@ export function Guests() {
   }
 
   useEffect(() => {
-    fetchConfirmated();
+    fetchGuests();
   }, []);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <Container>
+      <AdminHeader />
       <Title>Convidados</Title>
       <Buttons>
         <Button onClick={generatePDF} type="button">
@@ -113,12 +143,17 @@ export function Guests() {
                 <EditButton
                   onClick={() => handleGoEditGuest(item.id)}
                   title="Editar"
+                  type="button"
                 >
                   <LiaEdit size={24} />
                 </EditButton>
-                <UnconfirmButton title="Desconfirmar">
+                <DeleteButton
+                  onClick={() => handleDeleteGuest(item.id)}
+                  title="Excluir"
+                  type="button"
+                >
                   <IoCloseOutline size={32} />
-                </UnconfirmButton>
+                </DeleteButton>
               </Actions>
             </tr>
           ))}
@@ -127,9 +162,20 @@ export function Guests() {
       <CardList>
         {guestsList.map((item) => (
           <Card key={item.id}>
-            <UnconfirmButton title="Desconfirmar">
-              <IoCloseOutline size={24} />
-            </UnconfirmButton>
+            <ActionButtons>
+              <EditButton
+                onClick={() => handleGoEditGuest(item.id)}
+                title="Editar"
+              >
+                <LiaEdit size={24} />
+              </EditButton>
+              <DeleteButton
+                onClick={() => handleDeleteGuest(item.id)}
+                title="Excluir"
+              >
+                <IoCloseOutline size={32} />
+              </DeleteButton>
+            </ActionButtons>
             <div>
               <strong>ID:</strong> <span>{item.id}</span>
             </div>

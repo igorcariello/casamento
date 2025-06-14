@@ -5,10 +5,10 @@ import {
   MessageContent,
   MessageHeader,
   MessagesWrapper,
+  Title,
 } from "./styles";
 import { api } from "../../lib/axios";
-import { FaAngleLeft } from "react-icons/fa6";
-import { Header } from "./styles";
+import { AdminHeader } from "../../components/AdminHeader";
 
 interface Message {
   id: number;
@@ -24,7 +24,6 @@ export function MessagesBoard() {
       try {
         const response = await api.get("messages");
         setMessages(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error("Erro ao buscar mensagens", error);
       }
@@ -35,13 +34,9 @@ export function MessagesBoard() {
 
   return (
     <Container>
-      <Header>
-        <a href="/">
-          <FaAngleLeft />
-          voltar para Home
-        </a>
-        <h1>Mural de Mensagens</h1>
-      </Header>
+      <AdminHeader />
+
+      <Title>Mural de Mensagens</Title>
       <MessagesWrapper>
         {messages.length === 0 ? (
           <p>Sem mensagens ainda</p>

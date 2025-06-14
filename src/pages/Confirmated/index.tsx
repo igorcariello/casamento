@@ -14,6 +14,7 @@ import {
 import { IoCloseOutline } from "react-icons/io5";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import { AdminHeader } from "../../components/AdminHeader";
 
 interface Confirmated {
   id: number;
@@ -89,6 +90,7 @@ export function Confirmated() {
 
   return (
     <Container>
+      <AdminHeader />
       <Title>Lista de Confirmados</Title>
 
       <Buttons>

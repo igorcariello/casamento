@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -20,7 +21,7 @@ export const Container = styled.div`
   }
 
 `
-export const BackToHome = styled.a`
+export const BackToHome = styled(Link)`
   color: white;
 
   display: flex;

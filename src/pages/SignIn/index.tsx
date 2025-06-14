@@ -3,52 +3,39 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Container, Form, InputWrapper } from "./styles";
-import { api } from "../../lib/axios";
 
-import { AxiosError } from "axios";
+import { useAuth } from "../../hook/useAuth";
+
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const signInSchema = z.object({
   email: z.string().email(),
-  password: z.string(),
+  password: z.string().min(1, "A senha é obrigatória"),
 });
 
 type signInFormInputs = z.infer<typeof signInSchema>;
 
 export function SignIn() {
-  const { register, handleSubmit, reset } = useForm<signInFormInputs>({
+  const { signIn } = useAuth();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<signInFormInputs>({
     resolver: zodResolver(signInSchema),
   });
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  function goHome() {
-    navigate("/");
-  }
-
-  async function handleSendConfirmation(data: signInFormInputs) {
+  async function handleSignIn(data: signInFormInputs) {
     setIsSubmitting(true);
-    const { email, password } = data;
 
     try {
-      await api.post("confirmation", {
-        email,
-        password,
-      });
-
-      alert("Confirmação realizada com sucesso!");
+      await signIn(data);
       reset();
-      goHome();
-    } catch (error) {
-      const err = error as AxiosError<{ message: string }>;
-
-      console.error(err);
-
-      const message =
-        err.response?.data?.message ||
-        "Falha ao confirmar presença. Tente novamente";
-      alert(message);
+      navigate("/guests");
     } finally {
       setIsSubmitting(false);
     }
@@ -56,7 +43,7 @@ export function SignIn() {
 
   return (
     <Container>
-      <Form onSubmit={handleSubmit(handleSendConfirmation)}>
+      <Form onSubmit={handleSubmit(handleSignIn)}>
         <h1>Faça seu login</h1>
         <InputWrapper>
           <label htmlFor="email"> E-mail: </label>
@@ -64,9 +51,9 @@ export function SignIn() {
             type="email"
             id="email"
             placeholder="Digite o seu e-mail"
-            required
             {...register("email")}
           />
+          {errors.email && <span>{errors.email.message}</span>}
         </InputWrapper>
         <InputWrapper>
           <label htmlFor="password"> Senha:</label>
@@ -74,9 +61,9 @@ export function SignIn() {
             type="password"
             id="password"
             placeholder="Digite sua senha"
-            required
             {...register("password")}
           />
+          {errors.password && <span>{errors.password.message}</span>}
         </InputWrapper>
         <a href="/signup">Criar Conta</a>
         <Button type="submit" disabled={isSubmitting}>

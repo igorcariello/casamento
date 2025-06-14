@@ -7,6 +7,7 @@ const AuthContext = createContext({});
 
 interface AuthContextType {
   signIn: ({ email, password }: SignInProps) => Promise<void>;
+  signOut: () => void;
 }
 
 interface AuthProviderProps {
@@ -25,14 +26,14 @@ interface User {
 }
 
 interface AuthData {
-  user?: User;
+  admin?: User;
   token?: string;
 }
 
 function AuthProvider({ children }: AuthProviderProps) {
   const [data, setData] = useState<AuthData>(() => {
-    const token = localStorage.getItem("@casamentoBiaEIago:token");
-    const userStr = localStorage.getItem("@casamentoBiaEIago:user");
+    const token = localStorage.getItem("@casamentoBiaEIago:admin_token");
+    const userStr = localStorage.getItem("@casamentoBiaEIago:admin_user");
 
     if (token && userStr) {
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -45,15 +46,18 @@ function AuthProvider({ children }: AuthProviderProps) {
 
   async function signIn({ email, password }: SignInProps) {
     try {
-      const response = await api.post("/sessions", { email, password });
-      const { user, token } = response.data;
+      const response = await api.post("/admin/signin", { email, password });
+      const { admin, token } = response.data;
 
-      localStorage.setItem("@casamentoBiaEIago:token", token);
-      localStorage.setItem("@casamentoBiaEIago:user", JSON.stringify(user));
+      localStorage.setItem("@casamentoBiaEIago:admin_token", token);
+      localStorage.setItem(
+        "@casamentoBiaEIago:admin_user",
+        JSON.stringify(admin)
+      );
 
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-      setData({ user, token });
+      setData({ admin, token });
     } catch (error: unknown) {
       const err = error as AxiosError<{ message: string }>;
       if (err.response?.data?.message) {
@@ -65,25 +69,25 @@ function AuthProvider({ children }: AuthProviderProps) {
   }
 
   function signOut() {
-    localStorage.removeItem("@casamentoBiaEIago:token");
-    localStorage.removeItem("@casamentoBiaEIago:user");
+    localStorage.removeItem("@casamentoBiaEIago:admin_token");
+    localStorage.removeItem("@casamentoBiaEIago:admin_user");
 
     setData({});
   }
 
   useEffect(() => {
-    const token = localStorage.getItem("@casamentoBiaEIago:token");
-    const userStr = localStorage.getItem("@casamentoBiaEIago:user");
+    const token = localStorage.getItem("@casamentoBiaEIago:admin_token");
+    const userStr = localStorage.getItem("@casamentoBiaEIago:admin_user");
 
     if (token && userStr) {
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
       try {
-        const user = JSON.parse(userStr);
-        setData({ token, user });
+        const admin = JSON.parse(userStr);
+        setData({ token, admin });
       } catch (error) {
-        localStorage.removeItem("@casamentoBiaEIago:token");
-        localStorage.removeItem("@casamentoBiaEIago:user");
+        localStorage.removeItem("@casamentoBiaEIago:admin_token");
+        localStorage.removeItem("@casamentoBiaEIago:admin_user");
         setData({});
         console.log("Errr ao analisar dados do usuário no localStorage", error);
       }
@@ -95,7 +99,8 @@ function AuthProvider({ children }: AuthProviderProps) {
       value={{
         signIn,
         signOut,
-        user: data.user,
+        user: data.admin,
+        token: data.token,
       }}
     >
       {children}

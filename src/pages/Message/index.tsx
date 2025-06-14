@@ -58,7 +58,7 @@ export function Messages() {
   return (
     <Container>
       <div>
-        <BackToHome href="/">
+        <BackToHome to="/">
           <FaAngleLeft />
           voltar para Home
         </BackToHome>

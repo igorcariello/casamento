@@ -1,40 +1,24 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 2rem 1rem;
+  padding-top: clamp(2rem, 5vw, 2rem);
+  padding-bottom: clamp(2rem, 5vw, 2rem);
+  padding-left: clamp(0.5rem, 10vw, 50rem);
+  padding-right: clamp(0.5rem, 10vw, 50rem);
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
   min-height: 100vh;
-
-  h1 {
-    color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
-  }
 
 
 `
 
-export const Header = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  width: 100%;
-
-  max-width: 62.5rem;
-
-
-  > a {
-    position: absolute;
-    left: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
-  }
+export const Title = styled.h1`
+  color: ${({ theme }) => theme.COLORS.FONT_COLOR_SECUNDARY};
+  font-size: 2.5rem;
+  text-align: center;
+  padding: 2rem 0;
 `
 export const MessagesWrapper = styled.div`
   width: 100%;
