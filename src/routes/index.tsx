@@ -16,6 +16,7 @@ import { ScrollToTopOnRouteChange } from "../utils/ScrollToTopOnRouteChange";
 import { Cart } from "../pages/Cart";
 import { Reservations } from "../pages/Reservation";
 import { Stock } from "../pages/Stock";
+import { CheckInScanner } from "../pages/CheckInScanner";
 
 export function RoutesApp() {
   return (
@@ -39,6 +40,7 @@ export function RoutesApp() {
         <Route path="/edit/:id" element={<EditGuest />} />
         <Route path="/reservations" element={<Reservations />} />
         <Route path="/stock" element={<Stock />} />
+        <Route path="checkin-scanner" element={<CheckInScanner />} />
       </Routes>
     </Router>
   );
