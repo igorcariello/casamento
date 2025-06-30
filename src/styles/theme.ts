@@ -13,5 +13,17 @@ export default {
     FONT_COLOR_PRIMARY: '#444C35',
     FONT_COLOR_SECUNDARY: '#FFFFFF',
 
+    PURPLE_500: "#7D5BA6",
+    PURPLE_700: "#5E4183",
+
+    GREEN_600: "#2E7D32",
+    GREEN_100: "#C8E6C9",
+
+    RED_500: "#C62828",
+    RED_100: "#FFCDD2",
+
+    ORANGE_500: "#FB8C00",
+    ORANGE_700: "#EF6C00",
+
   }
 }

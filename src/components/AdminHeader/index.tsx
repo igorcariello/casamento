@@ -24,6 +24,12 @@ export function AdminHeader() {
             <ul>
               <Link to="/confirmated">Confirmados</Link>
             </ul>
+            <ul>
+              <Link to="/reservations">Presentes reservados</Link>
+            </ul>
+            <ul>
+              <Link to="/stock">Estoque</Link>
+            </ul>
           </div>
           <ul>
             <button onClick={() => handleSignOut()}>Sair</button>

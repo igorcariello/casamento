@@ -36,7 +36,6 @@ interface Guest {
 export function EditGuest() {
   const { id } = useParams<{ id: string }>();
   const guestId = Number(id);
-  console.log("guestId:", guestId);
 
   const {
     register,

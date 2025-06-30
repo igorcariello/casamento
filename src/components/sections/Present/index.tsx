@@ -1,4 +1,4 @@
-import { Container, Content } from "./styles";
+import { Container, Content, GoPresentList } from "./styles";
 
 export function Present() {
   return (
@@ -9,9 +9,9 @@ export function Present() {
         <p>Mas para entrar no clima leve e descontraído da nossa celebração,</p>
         <p>criamos uma lista de presentes divertidos,</p>
         <p>porque rir e celebrar juntos faz parte do pacote.</p>
-        <a href="/" target="_blank">
+        <GoPresentList to="/presentlist" target="_blank">
           Acesse a Lista de Presentes
-        </a>
+        </GoPresentList>
       </Content>
     </Container>
   );

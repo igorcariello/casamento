@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.section`
@@ -65,4 +66,19 @@ export const Content = styled.div`
   }
 
 
+`
+
+export const GoPresentList = styled(Link)`
+  margin-top:5rem;
+  cursor: pointer;
+
+  padding: 0.5rem 3rem;
+  border: 1px solid ${({ theme }) => theme.COLORS.FONT_COLOR_SECUNDARY};
+
+  &:hover{
+    filter: brightness(0.8);
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+
+  }
 `

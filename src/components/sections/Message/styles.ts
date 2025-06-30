@@ -173,7 +173,7 @@ export const Signature = styled.div`
 `
 
 export const ScrollToTopLink = styled.a`
-margin-top: 3rem;
+  margin-top: 3rem;
 
     font-size: 1rem;
     font-family: 'Avenir Book', sans-serif;

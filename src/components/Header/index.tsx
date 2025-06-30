@@ -3,6 +3,12 @@ import BI from "../../assets/BI.png";
 import {
   Container,
   Content,
+  GoConfirmation,
+  GoHome,
+  GoMessage,
+  GoOursHistory,
+  GoPresent,
+  GoTipsForGuests,
   MobileMenuButton,
   MobileMenuOverlay,
 } from "./styles";
@@ -28,23 +34,27 @@ export function Header({ visible, floating }: HeaderProps) {
           <TiThMenu onClick={toggleMenu} data-open={isMenuOpen} />
         </MobileMenuButton>
 
-        <a href="/" className="logo">
+        <GoHome to="/#background-header" className="logo">
           <img src={BI} alt="logo B I" />
-        </a>
+        </GoHome>
 
         <nav>
           <ul>
             <li>
-              <a href="#oursHistory">Nossa História</a>
+              <GoOursHistory to="/#oursHistory">Nossa História</GoOursHistory>
             </li>
             <li>
-              <a href="#tipsForGuests">Dicas Para Convidados</a>
+              <GoTipsForGuests to="/#tipsForGuests">
+                Dicas Para Convidados
+              </GoTipsForGuests>
             </li>
             <li>
-              <a href="#confirmation">Confirmação de Presença</a>
+              <GoConfirmation to="/#confirmation">
+                Confirmação de Presença
+              </GoConfirmation>
             </li>
             <li>
-              <a href="#present">Lista de Presentes</a>
+              <GoPresent to="/presentlist">Lista de Presentes</GoPresent>
             </li>
           </ul>
         </nav>
@@ -54,29 +64,29 @@ export function Header({ visible, floating }: HeaderProps) {
           <nav>
             <ul>
               <li>
-                <a onClick={toggleMenu} href="#oursHistory">
+                <GoOursHistory onClick={toggleMenu} to="/#oursHistory">
                   Nossa História
-                </a>
+                </GoOursHistory>
               </li>
               <li>
-                <a onClick={toggleMenu} href="#tipsForGuests">
+                <GoTipsForGuests onClick={toggleMenu} to="/#tipsForGuests">
                   Dicas Para Convidados
-                </a>
+                </GoTipsForGuests>
               </li>
               <li>
-                <a onClick={toggleMenu} href="#confirmation">
+                <GoConfirmation onClick={toggleMenu} to="/#confirmation">
                   Confirmação de Presença
-                </a>
+                </GoConfirmation>
               </li>
               <li>
-                <a onClick={toggleMenu} href="#present">
+                <GoPresent onClick={toggleMenu} to="/presentlist">
                   Lista de Presentes
-                </a>
+                </GoPresent>
               </li>
               <li>
-                <a onClick={toggleMenu} href="#message">
+                <GoMessage onClick={toggleMenu} to="/#message">
                   Mensagens
-                </a>
+                </GoMessage>
               </li>
             </ul>
           </nav>

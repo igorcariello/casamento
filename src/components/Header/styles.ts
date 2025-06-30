@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 interface HeaderProps {
@@ -99,8 +100,7 @@ export const Content = styled.div`
         }
         
         a {
-          text-decoration: none;
-          color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+          
         }
 
         &:hover {
@@ -147,6 +147,32 @@ export const MobileMenuButton = styled.div`
     z-index: 110;
   }
 `
+
+export const GoHome = styled(Link)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+`
+export const GoOursHistory = styled(Link)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+`
+export const GoTipsForGuests = styled(Link)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+`
+export const GoConfirmation = styled(Link)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+`
+export const GoPresent = styled(Link)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+`
+export const GoMessage = styled(Link)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+`
+
 interface MobileMenuOverlay {
   isOpen: boolean
 }
