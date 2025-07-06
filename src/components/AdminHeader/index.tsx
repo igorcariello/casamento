@@ -30,6 +30,12 @@ export function AdminHeader() {
             <ul>
               <Link to="/stock">Estoque</Link>
             </ul>
+            <ul>
+              <Link to="/checkinlist">Check-In realizados</Link>
+            </ul>
+            <ul>
+              <Link to="/checkin-scanner">Escaner</Link>
+            </ul>
           </div>
           <ul>
             <button onClick={() => handleSignOut()}>Sair</button>

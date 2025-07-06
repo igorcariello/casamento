@@ -17,6 +17,8 @@ import { Cart } from "../pages/Cart";
 import { Reservations } from "../pages/Reservation";
 import { Stock } from "../pages/Stock";
 import { CheckInScanner } from "../pages/CheckInScanner";
+import { CheckInList } from "../pages/CheckInList";
+import { TicketPage } from "../pages/TicketPage";
 
 export function RoutesApp() {
   return (
@@ -41,6 +43,8 @@ export function RoutesApp() {
         <Route path="/reservations" element={<Reservations />} />
         <Route path="/stock" element={<Stock />} />
         <Route path="checkin-scanner" element={<CheckInScanner />} />
+        <Route path="checkinlist" element={<CheckInList />} />
+        <Route path="/guests/:id/ticket" element={<TicketPage />} />
       </Routes>
     </Router>
   );

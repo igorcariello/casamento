@@ -15,6 +15,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { AdminHeader } from "../../components/AdminHeader";
+import { Link } from "react-router-dom";
 
 interface Confirmated {
   id: number;
@@ -126,6 +127,9 @@ export function Confirmated() {
                 >
                   <IoCloseOutline size={32} />
                 </UnconfirmButton>
+                <Link to={`/guests/${item.id}/ticket`}>
+                  <button title="Ver QRCode">QR Code</button>
+                </Link>
               </td>
             </tr>
           ))}

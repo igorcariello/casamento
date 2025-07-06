@@ -8,7 +8,7 @@ export function CheckInScanner() {
     const scanner = new Html5Qrcode("reader");
 
     scanner.start(
-      { facingMode: "environment" }, // câmera traseira
+      { facingMode: "environment" },
       {
         fps: 10,
         qrbox: { width: 250, height: 250 },
