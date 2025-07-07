@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Html5Qrcode } from "html5-qrcode";
 import axios from "axios";
 import { Container, Content, Title, ReaderWrapper, Message } from "./styles";
+import { api } from "../../lib/axios";
 
 export function CheckInScanner() {
   useEffect(() => {
@@ -17,15 +18,13 @@ export function CheckInScanner() {
         console.log("QR Code decoded:", decodedText);
 
         try {
-          const response = await axios.post(
-            "http://localhost:3334/checkin", // alterado de PATCH para POST
-            { code: decodedText } // enviando no body como esperado pelo backend
-          );
+          const response = await api.post("/checkin", {
+            code: decodedText,
+          });
           alert(response.data.message);
         } catch (err) {
           console.error(err);
 
-          // Tratamento seguro do erro
           let errorMessage = "Erro ao confirmar check-in.";
 
           if (axios.isAxiosError(err)) {
