@@ -17,8 +17,12 @@ import { Loader } from "../../components/Loader";
 
 const editGuestSchema = z.object({
   id: z.coerce.number(),
-  name: z.string(),
-  email: z.string(),
+  name: z.string().min(1, "Nome é obrigatório"),
+  email: z
+    .string()
+    .email("Formato de e-mail inválido")
+    .optional()
+    .or(z.literal("")),
   allowed_guests: z.coerce.number().min(0, "Número deve ser positivo"),
   confirmed_guests: z.coerce.number().min(0, "Número deve ser positivo"),
 });
@@ -58,7 +62,12 @@ export function EditGuest() {
 
   async function handleEditGuest(data: editGuestFormInputs) {
     try {
-      await api.put(`/guests/${data.id}`, data);
+      const payload = {
+        ...data,
+        email: data.email === "" ? null : data.email,
+      };
+
+      await api.put(`/guests/${payload.id}`, payload);
       alert("Convidado atualizado com sucesso!");
       reset();
       goGuest();
@@ -120,7 +129,6 @@ export function EditGuest() {
             type="email"
             id="email"
             placeholder="Digite o email do convidado"
-            required
             {...register("email")}
           />
           {errors.email && <span>{errors.email.message}</span>}

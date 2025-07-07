@@ -24,23 +24,24 @@ export function SignUp() {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  function goHome() {
-    navigate("/");
+  function goSignIn() {
+    navigate("/signin");
   }
 
   async function handleSendConfirmation(data: signInFormInputs) {
     setIsSubmitting(true);
-    const { email, password } = data;
+    const { email, password, name } = data;
 
     try {
-      await api.post("confirmation", {
+      await api.post("/admin/signup", {
         email,
         password,
+        name,
       });
 
       alert("Confirmação realizada com sucesso!");
       reset();
-      goHome();
+      goSignIn();
     } catch (error) {
       const err = error as AxiosError<{ message: string }>;
 

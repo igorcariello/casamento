@@ -39,7 +39,8 @@ export function Guests() {
     try {
       setIsLoading(true);
       const response = await api.get<Guests[]>("/guests");
-      setGuestsList(response.data);
+      const sortedGuests = response.data.sort((a, b) => a.id - b.id);
+      setGuestsList(sortedGuests);
     } catch (error) {
       console.error("Erro ao buscar confirmados", error);
     } finally {
