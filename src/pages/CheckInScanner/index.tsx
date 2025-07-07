@@ -17,13 +17,25 @@ export function CheckInScanner() {
         console.log("QR Code decoded:", decodedText);
 
         try {
-          const response = await axios.patch(
-            `http://localhost:3334/checkin/${decodedText}`
+          const response = await axios.post(
+            "http://localhost:3334/checkin", // alterado de PATCH para POST
+            { code: decodedText } // enviando no body como esperado pelo backend
           );
           alert(response.data.message);
-        } catch (error) {
-          console.error(error);
-          alert("Erro ao confirmar check-in.");
+        } catch (err) {
+          console.error(err);
+
+          // Tratamento seguro do erro
+          let errorMessage = "Erro ao confirmar check-in.";
+
+          if (axios.isAxiosError(err)) {
+            errorMessage =
+              err.response?.data?.message || err.message || errorMessage;
+          } else if (err instanceof Error) {
+            errorMessage = err.message;
+          }
+
+          alert(errorMessage);
         }
 
         await scanner.stop();
