@@ -1,17 +1,20 @@
 import { useEffect } from "react";
 import { Html5Qrcode } from "html5-qrcode";
 import { api } from "../../lib/axios";
-import { Container, Content, Title, ReaderWrapper, Message } from "./styles";
-import axios, { AxiosError } from "axios";
 
 export function CheckInScanner() {
   useEffect(() => {
     const scanner = new Html5Qrcode("reader");
 
+    let lastDecoded = "";
+
     scanner.start(
       { facingMode: "environment" },
       { fps: 10, qrbox: { width: 250, height: 250 } },
       async (decodedText) => {
+        if (decodedText === lastDecoded) return;
+        lastDecoded = decodedText;
+
         console.log("QR Code decoded:", decodedText);
 
         try {
@@ -22,31 +25,16 @@ export function CheckInScanner() {
           const { success, message, alreadyCheckedIn } = response.data;
 
           if (success) {
-            if (alreadyCheckedIn) {
-              alert(`⚠️ ${message}`);
-            } else {
-              alert(`✅ ${message}`);
-            }
+            alert(alreadyCheckedIn ? `⚠️ ${message}` : `✅ ${message}`);
           } else {
             alert(`❌ ${message}`);
           }
         } catch (err) {
           console.error(err);
-
-          let errorMessage = "Erro ao confirmar check-in.";
-
-          if (axios.isAxiosError(err)) {
-            const axiosError = err as AxiosError<{ message: string }>;
-            errorMessage =
-              axiosError.response?.data?.message ||
-              axiosError.message ||
-              errorMessage;
-          } else if (err instanceof Error) {
-            errorMessage = err.message;
-          }
-
-          alert(errorMessage);
+          alert("Erro ao confirmar check-in.");
         }
+
+        await scanner.stop();
       },
       (errorMessage) => {
         console.warn("QR Code scan error:", errorMessage);
@@ -59,14 +47,9 @@ export function CheckInScanner() {
   }, []);
 
   return (
-    <Container>
-      <Content>
-        <Title>Leitor de QR Code - Check-in</Title>
-        <ReaderWrapper id="reader" />
-        <Message>
-          Posicione o QR Code no centro da câmera para confirmar chegada
-        </Message>
-      </Content>
-    </Container>
+    <div>
+      <h1>Leitor de QR Code - Check-in</h1>
+      <div id="reader" />
+    </div>
   );
 }
