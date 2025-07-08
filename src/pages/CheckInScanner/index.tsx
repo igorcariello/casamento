@@ -1,55 +1,77 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Html5Qrcode } from "html5-qrcode";
 import { api } from "../../lib/axios";
+import { Container, Content, Title, ReaderWrapper, Message } from "./styles";
 
 export function CheckInScanner() {
+  const [scanning, setScanning] = useState(true);
+
   useEffect(() => {
     const scanner = new Html5Qrcode("reader");
-
     let lastDecoded = "";
 
-    scanner.start(
-      { facingMode: "environment" },
-      { fps: 10, qrbox: { width: 250, height: 250 } },
-      async (decodedText) => {
-        if (decodedText === lastDecoded) return;
-        lastDecoded = decodedText;
+    async function startScanner() {
+      try {
+        await scanner.start(
+          { facingMode: "environment" },
+          { fps: 10, qrbox: { width: 250, height: 250 } },
+          async (decodedText) => {
+            const code = decodedText.trim();
+            if (code === lastDecoded) return;
+            lastDecoded = code;
 
-        console.log("QR Code decoded:", decodedText);
+            console.log("QR Code decoded:", code);
 
-        try {
-          const response = await api.post("/checkin", {
-            code: decodedText.trim(),
-          });
+            try {
+              const response = await api.post("/checkin", { code });
+              const { success, message } = response.data;
 
-          const { success, message, alreadyCheckedIn } = response.data;
+              if (success) {
+                alert(`✅ ${message}`);
+              } else {
+                alert(`❌ ${message}`);
+              }
+            } catch (err) {
+              console.error(err);
+              alert("❌ Erro ao confirmar check-in.");
+            }
 
-          if (success) {
-            alert(alreadyCheckedIn ? `⚠️ ${message}` : `✅ ${message}`);
-          } else {
-            alert(`❌ ${message}`);
+            await scanner.stop();
+            setScanning(false);
+          },
+          (errorMessage) => {
+            console.warn("QR Code scan error:", errorMessage);
           }
-        } catch (err) {
-          console.error(err);
-          alert("Erro ao confirmar check-in.");
-        }
-
-        await scanner.stop();
-      },
-      (errorMessage) => {
-        console.warn("QR Code scan error:", errorMessage);
+        );
+      } catch (err) {
+        console.error("Erro ao iniciar scanner:", err);
       }
-    );
+    }
+
+    if (scanning) {
+      startScanner();
+    }
 
     return () => {
       scanner.stop().catch((err) => console.log("Erro ao parar scanner", err));
     };
-  }, []);
+  }, [scanning]);
 
   return (
-    <div>
-      <h1>Leitor de QR Code - Check-in</h1>
-      <div id="reader" />
-    </div>
+    <Container>
+      <Content>
+        <Title>Leitor de QR Code - Check-in</Title>
+        {scanning ? (
+          <>
+            <ReaderWrapper id="reader" />
+            <Message>
+              Posicione o QR Code no centro da câmera para confirmar chegada
+            </Message>
+          </>
+        ) : (
+          <Message>✅ Check-in realizado. Scanner parado.</Message>
+        )}
+      </Content>
+    </Container>
   );
 }
