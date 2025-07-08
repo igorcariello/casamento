@@ -14,7 +14,7 @@ import { api } from "../../lib/axios";
 import { useNavigate } from "react-router-dom";
 
 const createGuestSchema = z.object({
-  name: z.string(),
+  name: z.string().min(1, "O nome é obrigatório"),
   allowed_guests: z.coerce.number().min(0, "Número deve ser positivo"),
 });
 

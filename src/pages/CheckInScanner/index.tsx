@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { Html5Qrcode } from "html5-qrcode";
-import axios from "axios";
-import { Container, Content, Title, ReaderWrapper, Message } from "./styles";
 import { api } from "../../lib/axios";
+import { Container, Content, Title, ReaderWrapper, Message } from "./styles";
+import axios, { AxiosError } from "axios";
 
 export function CheckInScanner() {
   useEffect(() => {
@@ -10,34 +10,43 @@ export function CheckInScanner() {
 
     scanner.start(
       { facingMode: "environment" },
-      {
-        fps: 10,
-        qrbox: { width: 250, height: 250 },
-      },
+      { fps: 10, qrbox: { width: 250, height: 250 } },
       async (decodedText) => {
         console.log("QR Code decoded:", decodedText);
 
         try {
           const response = await api.post("/checkin", {
-            code: decodedText,
+            code: decodedText.trim(),
           });
-          alert(response.data.message);
+
+          const { success, message, alreadyCheckedIn } = response.data;
+
+          if (success) {
+            if (alreadyCheckedIn) {
+              alert(`⚠️ ${message}`);
+            } else {
+              alert(`✅ ${message}`);
+            }
+          } else {
+            alert(`❌ ${message}`);
+          }
         } catch (err) {
           console.error(err);
 
           let errorMessage = "Erro ao confirmar check-in.";
 
           if (axios.isAxiosError(err)) {
+            const axiosError = err as AxiosError<{ message: string }>;
             errorMessage =
-              err.response?.data?.message || err.message || errorMessage;
+              axiosError.response?.data?.message ||
+              axiosError.message ||
+              errorMessage;
           } else if (err instanceof Error) {
             errorMessage = err.message;
           }
 
           alert(errorMessage);
         }
-
-        await scanner.stop();
       },
       (errorMessage) => {
         console.warn("QR Code scan error:", errorMessage);
