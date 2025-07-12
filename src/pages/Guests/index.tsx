@@ -39,7 +39,9 @@ export function Guests() {
     try {
       setIsLoading(true);
       const response = await api.get<Guests[]>("/guests");
-      const sortedGuests = response.data.sort((a, b) => a.id - b.id);
+      const sortedGuests = response.data.sort((a, b) =>
+        a.name.localeCompare(b.name, "pt-BR", { sensitivity: "base" })
+      );
       setGuestsList(sortedGuests);
     } catch (error) {
       console.error("Erro ao buscar confirmados", error);

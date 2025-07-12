@@ -4,6 +4,8 @@ import {
   Container,
   Table,
   UnconfirmButton,
+  QRCodeButton,
+  Actions,
   Title,
   TotalCard,
   CardList,
@@ -15,7 +17,6 @@ import { IoCloseOutline } from "react-icons/io5";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { AdminHeader } from "../../components/AdminHeader";
-import { Link } from "react-router-dom";
 
 interface Confirmated {
   id: number;
@@ -35,7 +36,12 @@ export function Confirmated() {
         totalPeople: number;
         guests: Confirmated[];
       }>("confirmation/confirmed");
-      setConfirmatedList(response.data.guests);
+
+      const sortedGuests = response.data.guests.sort((a, b) =>
+        a.name.localeCompare(b.name, "pt-BR", { sensitivity: "base" })
+      );
+
+      setConfirmatedList(sortedGuests);
       setTotalPeople(response.data.totalPeople);
     } catch (error) {
       console.error("Erro ao buscar confirmados", error);
@@ -60,7 +66,6 @@ export function Confirmated() {
 
   function generatePDF() {
     const doc = new jsPDF();
-
     doc.text("Lista de Confirmados", 14, 20);
 
     autoTable(doc, {
@@ -81,7 +86,6 @@ export function Confirmated() {
 
     doc.setFontSize(10);
     doc.text(`Gerado em: ${date}`, 14, pageHeight - 10);
-
     doc.save("confirmados.pdf");
   }
 
@@ -121,29 +125,37 @@ export function Confirmated() {
               <td>{item.allowed_guests}</td>
               <td>{item.confirmed_guests}</td>
               <td>
-                <UnconfirmButton
-                  onClick={() => handleUnconfirm(item.id)}
-                  title="Desconfirmar"
-                >
-                  <IoCloseOutline size={32} />
-                </UnconfirmButton>
-                <Link to={`/guests/${item.id}/ticket`}>
-                  <button title="Ver QRCode">QR Code</button>
-                </Link>
+                <Actions>
+                  <UnconfirmButton
+                    onClick={() => handleUnconfirm(item.id)}
+                    title="Desconfirmar"
+                  >
+                    <IoCloseOutline size={20} />
+                  </UnconfirmButton>
+                  <QRCodeButton to={`/guests/${item.id}/ticket`}>
+                    QR Code
+                  </QRCodeButton>
+                </Actions>
               </td>
             </tr>
           ))}
         </tbody>
       </Table>
+
       <CardList>
         {confirmatedList.map((item) => (
           <Card key={item.id}>
-            <UnconfirmButton
-              onClick={() => handleUnconfirm(item.id)}
-              title="Desconfirmar"
-            >
-              <IoCloseOutline size={24} />
-            </UnconfirmButton>
+            <Actions>
+              <UnconfirmButton
+                onClick={() => handleUnconfirm(item.id)}
+                title="Desconfirmar"
+              >
+                <IoCloseOutline size={20} />
+              </UnconfirmButton>
+              <QRCodeButton to={`/guests/${item.id}/ticket`}>
+                QR Code
+              </QRCodeButton>
+            </Actions>
             <div>
               <strong>ID:</strong> <span>{item.id}</span>
             </div>

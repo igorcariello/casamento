@@ -30,10 +30,10 @@ export function CheckInScanner() {
 
               if (success) {
                 alert(`✅ ${message}`);
-                navigate("/checklist");
+                navigate("/checkinlist");
               } else {
                 alert(`❌ ${message}`);
-                navigate("/checklist");
+                navigate("/checkinlist");
               }
             } catch (err) {
               console.error(err);

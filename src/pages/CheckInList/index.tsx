@@ -1,23 +1,15 @@
 import { useEffect, useState } from "react";
 import { api } from "../../lib/axios";
-import {
-  Container,
-  Table,
-  Title,
-  TotalCard,
-  Buttons,
-  StatusBadge,
-  CardList,
-  Card,
-} from "./styles";
+import { Container, Table, Title, StatusBadge, CardList, Card } from "./styles";
 import { AdminHeader } from "../../components/AdminHeader";
+import { Loader } from "../../components/Loader";
 
 interface Guest {
   id: number;
   name: string;
   has_arrived: boolean;
   arrived_at: string;
-  confirmed_guests: number; // número de acompanhantes confirmados
+  confirmed_guests: number;
 }
 
 export function CheckInList() {
@@ -63,12 +55,8 @@ export function CheckInList() {
       <AdminHeader />
       <Title>Check-ins Realizados</Title>
 
-      <Buttons>
-        <TotalCard>Total de check-ins: {guests.length}</TotalCard>
-      </Buttons>
-
       {loading ? (
-        <p>Carregando...</p>
+        <Loader />
       ) : guests.length === 0 ? (
         <p>Nenhum convidado fez check-in ainda.</p>
       ) : (

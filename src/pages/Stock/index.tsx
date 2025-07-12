@@ -22,16 +22,18 @@ interface Product {
 export function Stock() {
   const [products, setProducts] = useState<Product[]>([]);
 
-  async function fetchProducts() {
-    try {
-      const res = await api.get<Product[]>("products");
-      setProducts(res.data);
-    } catch (err) {
-      console.error(err);
-    }
-  }
-
   useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const res = await api.get<Product[]>("products");
+
+        const orderedProducts = res.data.sort((a, b) => a.id - b.id);
+        setProducts(orderedProducts);
+      } catch (error) {
+        console.error("Erro ao buscar produtos", error);
+      }
+    }
+
     fetchProducts();
   }, []);
 
@@ -41,54 +43,55 @@ export function Stock() {
       <Title>Estoque de Produtos</Title>
 
       <Buttons>
-        <TotalCard>Total de Produtos: {products.length}</TotalCard>
+        <TotalCard>Total de produtos: {products.length}</TotalCard>
       </Buttons>
 
-      <Table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Preço</th>
-            <th>Estoque</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((p) => (
-            <tr key={p.id}>
-              <td>{p.id}</td>
-              <td>{p.title}</td>
-              <td>{priceFormatter.format(p.price / 100)}</td>
-              <td>{p.stock}</td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+      {products.length === 0 ? (
+        <p>Nenhum produto cadastrado.</p>
+      ) : (
+        <>
+          <Table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Estoque</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((p) => (
+                <tr key={p.id}>
+                  <td>{p.id}</td>
+                  <td>{p.title}</td>
+                  <td>{priceFormatter.format(p.price / 100)}</td>
+                  <td>{p.stock}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
 
-      <CardList>
-        {products.map((p) => (
-          <Card key={p.id}>
-            <div>
-              <strong>ID:</strong> <span>{p.id}</span>
-            </div>
-            <div>
-              <strong>Nome:</strong> <span>{p.title}</span>
-            </div>
-            <div>
-              <strong>Preço:</strong>{" "}
-              <span>
-                {p.price.toLocaleString("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
-                })}
-              </span>
-            </div>
-            <div>
-              <strong>Estoque:</strong> <span>{p.stock}</span>
-            </div>
-          </Card>
-        ))}
-      </CardList>
+          <CardList>
+            {products.map((p) => (
+              <Card key={p.id}>
+                <div>
+                  <strong>ID:</strong> <span>{p.id}</span>
+                </div>
+                <div>
+                  <strong>Nome:</strong> <span>{p.title}</span>
+                </div>
+                <div>
+                  <strong>Preço:</strong>{" "}
+                  <span>{priceFormatter.format(p.price / 100)}</span>
+                </div>
+                <div>
+                  <strong>Estoque:</strong> <span>{p.stock}</span>
+                </div>
+              </Card>
+            ))}
+          </CardList>
+        </>
+      )}
     </Container>
   );
 }

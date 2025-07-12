@@ -1,66 +1,123 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding-top: clamp(2rem, 5vw, 2rem);
-  padding-bottom: clamp(2rem, 5vw, 2rem);
-  padding-left: clamp(0.5rem, 10vw, 50rem);
-  padding-right: clamp(0.5rem, 10vw, 50rem);
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+  min-height: 100vh;
+  padding: 2rem clamp(1rem, 5vw, 3rem);
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
-  min-height: 100vh;
 
-
-`
+  > div {
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 80rem;
+  }
+`;
 
 export const Title = styled.h1`
   color: ${({ theme }) => theme.COLORS.FONT_COLOR_SECUNDARY};
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
   text-align: center;
-  padding: 2rem 0;
-`
+  margin-bottom: 2rem;
+`;
+
 export const MessagesWrapper = styled.div`
   width: 100%;
-  max-width: 62.5rem;
-  
-  display: flex;
-  gap: 1.5rem;
+  max-width: 80rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
   padding: 1rem;
 
-  flex-wrap: wrap;
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+`;
 
-`
 export const MessageCard = styled.div`
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_2};
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s, box-shadow 0.2s;
-  flex: 1;
+  display: flex;
+  flex-direction: column;
 
-  min-width: 20rem;
-  height: 20rem;
+  height: 300px;
+  overflow-y: auto;
 
-  overflow: auto;
-  
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   }
-`
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_3};
+    border-radius: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+`;
 
 export const MessageHeader = styled.h3`
-  margin: 0 0 1rem 0;
-  font-family: 'Avenir Book', sans-serif;
+  margin-bottom: 0.75rem;
   font-weight: 600;
+  font-size: 1.2rem;
   color: ${({ theme }) => theme.COLORS.FONT_COLOR_PRIMARY};
+  flex-shrink: 0;
+
+  @media (max-width: 480px) {
+    font-size: 1rem;
+  }
 `;
 
 export const MessageContent = styled.p`
-  margin: 0;
-  font-family: 'Avenir Book', sans-serif;
   font-size: 1rem;
   color: ${({ theme }) => theme.COLORS.BACKGROUND_3};
   white-space: pre-wrap;
+  word-wrap: break-word;
+
+  @media (max-width: 480px) {
+    font-size: 0.95rem;
+  }
+`;
+
+export const EmptyMessage = styled.p`
+  color: ${({ theme }) => theme.COLORS.BACKGROUND_3};
+  font-size: 1.3rem;
+  text-align: center;
+  margin-top: 2rem;
+
+  @media (max-width: 480px) {
+    font-size: 1.1rem;
+  }
+`;
+
+export const BackToHome = styled(Link)`
+  color: white;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  font-weight: 500;
+  gap: 0.5rem;
+
+  padding-left: 5rem;
+
+  @media (max-width: 425px) {
+    justify-content: center;
+    padding-left: 0;
+  }
+
+  svg {
+    font-size: 1.2rem;
+  }
 `;

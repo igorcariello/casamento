@@ -1,23 +1,7 @@
-import { createContext, useEffect, useState } from "react";
-
+import { ReactNode, useEffect, useState } from "react";
 import { api } from "../lib/axios";
 import { AxiosError } from "axios";
-
-const AuthContext = createContext({});
-
-interface AuthContextType {
-  signIn: ({ email, password }: SignInProps) => Promise<void>;
-  signOut: () => void;
-}
-
-interface AuthProviderProps {
-  children: React.ReactNode;
-}
-
-interface SignInProps {
-  email: string;
-  password: string;
-}
+import { AuthContext } from "./AuthContext";
 
 interface User {
   id: number;
@@ -26,22 +10,31 @@ interface User {
 }
 
 interface AuthData {
-  admin?: User;
-  token?: string;
+  admin: User | null;
+  token: string | null;
 }
 
-function AuthProvider({ children }: AuthProviderProps) {
+interface SignInProps {
+  email: string;
+  password: string;
+}
+
+interface AuthProviderProps {
+  children: ReactNode;
+}
+
+export function AuthProvider({ children }: AuthProviderProps) {
   const [data, setData] = useState<AuthData>(() => {
     const token = localStorage.getItem("@casamentoBiaEIago:admin_token");
     const userStr = localStorage.getItem("@casamentoBiaEIago:admin_user");
 
     if (token && userStr) {
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      const user = JSON.parse(userStr);
-      return { user, token };
+      const admin = JSON.parse(userStr);
+      return { admin, token };
     }
 
-    return {};
+    return { admin: null, token: null };
   });
 
   async function signIn({ email, password }: SignInProps) {
@@ -56,9 +49,8 @@ function AuthProvider({ children }: AuthProviderProps) {
       );
 
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
       setData({ admin, token });
-    } catch (error: unknown) {
+    } catch (error) {
       const err = error as AxiosError<{ message: string }>;
       if (err.response?.data?.message) {
         alert(err.response.data.message);
@@ -71,8 +63,7 @@ function AuthProvider({ children }: AuthProviderProps) {
   function signOut() {
     localStorage.removeItem("@casamentoBiaEIago:admin_token");
     localStorage.removeItem("@casamentoBiaEIago:admin_user");
-
-    setData({});
+    setData({ admin: null, token: null });
   }
 
   useEffect(() => {
@@ -81,15 +72,14 @@ function AuthProvider({ children }: AuthProviderProps) {
 
     if (token && userStr) {
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
       try {
         const admin = JSON.parse(userStr);
-        setData({ token, admin });
+        setData({ admin, token });
       } catch (error) {
         localStorage.removeItem("@casamentoBiaEIago:admin_token");
         localStorage.removeItem("@casamentoBiaEIago:admin_user");
-        setData({});
-        console.log("Errr ao analisar dados do usuário no localStorage", error);
+        setData({ admin: null, token: null });
+        console.log("Erro ao analisar dados do usuário no localStorage", error);
       }
     }
   }, []);
@@ -97,16 +87,13 @@ function AuthProvider({ children }: AuthProviderProps) {
   return (
     <AuthContext.Provider
       value={{
-        signIn,
-        signOut,
         user: data.admin,
         token: data.token,
+        signIn,
+        signOut,
       }}
     >
       {children}
     </AuthContext.Provider>
   );
 }
-
-export { AuthProvider, AuthContext };
-export type { AuthContextType };

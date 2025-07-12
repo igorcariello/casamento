@@ -14,6 +14,10 @@ export const Container = styled.section`
   
   
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+
+  .disnone {
+    display: none;
+  }
   
 `
 
@@ -172,8 +176,9 @@ export const Signature = styled.div`
   
 `
 
-export const ScrollToTopLink = styled.a`
-  margin-top: 3rem;
+
+export const ScrollToTopLink = styled(Link)`
+  margin-top: 5rem;
 
     font-size: 1rem;
     font-family: 'Avenir Book', sans-serif;
@@ -196,4 +201,35 @@ export const ScrollToTopLink = styled.a`
 
       font-size: 0.75rem;
     }
+`
+
+export const GoToBoard = styled(Link)`
+
+  cursor: pointer;
+
+  display: inline-block;
+  text-align: center;
+
+  font-family: 'Avenir Book', sans-serif;
+  font-weight: 400;
+  font-size: 1.2rem;
+
+  color: ${({ theme }) => theme.COLORS.FONT_COLOR_SECUNDARY};
+
+  padding: 0.5rem 3rem;
+  border: 1px solid ${({ theme }) => theme.COLORS.FONT_COLOR_SECUNDARY};
+
+  &:hover{
+    filter: brightness(0.8);
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+
+  }
+`
+
+export const GoToBoardWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+
+  margin-top: 2rem;
 `

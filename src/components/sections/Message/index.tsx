@@ -7,12 +7,18 @@ import {
   GoToMessagePage,
   Signature,
   Text,
+  GoToBoard,
+  GoToBoardWrapper,
 } from "./styles";
 import imageflor4 from "../../../assets/flor4.png";
 import signature from "../../../assets/beatrizeiagobranco.png";
 import { FaChevronUp } from "react-icons/fa6";
 
-export function Message() {
+interface MessageProps {
+  disnone?: string;
+}
+
+export function Message({ disnone }: MessageProps) {
   return (
     <Container id="message">
       <MainContentWrapper>
@@ -40,9 +46,14 @@ export function Message() {
             />
           </Signature>
         </Content>
+        <GoToBoardWrapper className={disnone}>
+          <GoToBoard to="/board" target="_blank">
+            Ler mensagens
+          </GoToBoard>
+        </GoToBoardWrapper>
       </MainContentWrapper>
 
-      <ScrollToTopLink href="#background-header">
+      <ScrollToTopLink className={disnone} to={"#background-header"}>
         <FaChevronUp size={20} color="#fff" />
         Voltar ao topo
       </ScrollToTopLink>

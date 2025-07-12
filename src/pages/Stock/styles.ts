@@ -3,21 +3,26 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
   min-height: 100vh;
-  padding-top: clamp(2rem, 5vw, 2rem);
-  padding-bottom: clamp(2rem, 5vw, 2rem);
-  padding-left: clamp(0.5rem, 10vw, 50rem);
-  padding-right: clamp(0.5rem, 10vw, 50rem);
-  
+  padding: 2rem 5vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
 `;
 
+
 export const Title = styled.h1`
   color: ${({ theme }) => theme.COLORS.FONT_COLOR_SECUNDARY};
   font-size: 2.5rem;
   text-align: center;
+  cursor: default;
+`;
+
+export const Buttons = styled.div`
+  width: 100%;
+  max-width: 62.5rem;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 export const TotalCard = styled.div`
@@ -27,6 +32,7 @@ export const TotalCard = styled.div`
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   font-weight: bold;
+  cursor: default;
 `;
 
 export const Table = styled.table`
@@ -38,13 +44,14 @@ export const Table = styled.table`
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 
-  @media(width <= 768px) {
+  @media(max-width: 768px) {
     display: none;
   }
 
   th, td {
     padding: 1rem;
     text-align: center;
+    cursor: default;
   }
 
   thead {
@@ -54,32 +61,17 @@ export const Table = styled.table`
 
   tbody tr:nth-child(odd) {
     background-color: ${({ theme }) => theme.COLORS.BACKGROUND_2};
-    cursor: default;
-    &:hover {
-      filter: brightness(0.95);
-    }
   }
 
   tbody tr:nth-child(even) {
     background-color: ${({ theme }) => theme.COLORS.BACKGROUND_4};
-    cursor: default;
-    &:hover {
-      filter: brightness(0.95);
-    }
   }
-`;
-
-export const Buttons = styled.footer`
-  width: 100%;
-  max-width: 62.5rem;
-  display: flex;
-  justify-content: space-between;
 `;
 
 export const CardList = styled.div`
   display: none;
 
-  @media(width <= 768px) {
+  @media(max-width: 768px) {
     display: flex;
     flex-direction: column;
     gap: 1rem;

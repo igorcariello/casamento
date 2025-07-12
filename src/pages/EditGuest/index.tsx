@@ -1,5 +1,4 @@
 import * as z from "zod";
-
 import {
   Button,
   ButtonBack,
@@ -27,7 +26,7 @@ const editGuestSchema = z.object({
   confirmed_guests: z.coerce.number().min(0, "Número deve ser positivo"),
 });
 
-type editGuestFormInputs = z.infer<typeof editGuestSchema>;
+type EditGuestFormInputs = z.infer<typeof editGuestSchema>;
 
 interface Guest {
   id: number;
@@ -46,126 +45,100 @@ export function EditGuest() {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<editGuestFormInputs>({
+  } = useForm<EditGuestFormInputs>({
     resolver: zodResolver(editGuestSchema),
   });
+
   const navigate = useNavigate();
-  const [guest, setGuest] = useState<Guest>();
+  const [guest, setGuest] = useState<Guest | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  function goGuest() {
-    navigate("/guests");
-  }
+  useEffect(() => {
+    async function fetchGuest() {
+      try {
+        const { data } = await api.get<Guest>(`/guests/${guestId}`);
+        setGuest(data);
+        reset({
+          id: data.id,
+          name: data.name,
+          email: data.email ?? "",
+          allowed_guests: data.allowed_guests,
+          confirmed_guests: data.confirmed_guests ?? 0,
+        });
+      } catch {
+        alert("Erro ao carregar convidado.");
+        navigate("/guests");
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchGuest();
+  }, [guestId, navigate, reset]);
 
-  function handleBack() {
-    navigate(-1);
-  }
-
-  async function handleEditGuest(data: editGuestFormInputs) {
+  async function onSubmit(data: EditGuestFormInputs) {
     try {
-      const payload = {
+      await api.put(`/guests/${data.id}`, {
         ...data,
         email: data.email === "" ? null : data.email,
-      };
-
-      await api.put(`/guests/${payload.id}`, payload);
+      });
       alert("Convidado atualizado com sucesso!");
-      reset();
-      goGuest();
-    } catch (error) {
-      console.error("Erro ao atualizar convidado", error);
+      navigate("/guests");
+    } catch {
       alert("Erro ao atualizar convidado.");
     }
   }
 
-  async function fetchGuest(id: number) {
-    try {
-      console.log("Requisição para:", `guests/${id}`);
-      const response = await api.get(`guests/${id}`);
-      setGuest(response.data);
-    } catch (error) {
-      console.log("Erro ao buscar o convidado", error);
-    }
-  }
-
-  useEffect(() => {
-    fetchGuest(guestId);
-  }, [guestId]);
-
-  useEffect(() => {
-    if (guest) {
-      reset({
-        id: guest.id,
-        name: guest.name,
-        email: guest.email ?? "",
-        allowed_guests: guest.allowed_guests,
-        confirmed_guests: guest.confirmed_guests ?? 0,
-      });
-    }
-  }, [guest, reset]);
-
-  if (!guest) {
+  if (loading || !guest) {
     return <Loader />;
   }
 
   return (
     <Container>
-      <Form onSubmit={handleSubmit(handleEditGuest)}>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <h1>Editar Convidado</h1>
         <input type="hidden" {...register("id")} />
+
         <InputWrapper>
-          <label htmlFor="name"> Nome: </label>
-          <input
-            type="text"
-            id="name"
-            placeholder="Digite o nome do convidado"
-            required
-            {...register("name")}
-          />
+          <label htmlFor="name">Nome</label>
+          <input id="name" {...register("name")} />
           {errors.name && <span>{errors.name.message}</span>}
         </InputWrapper>
+
         <InputWrapper>
-          <label htmlFor="email"> Email:</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Digite o email do convidado"
-            {...register("email")}
-          />
+          <label htmlFor="email">Email</label>
+          <input id="email" {...register("email")} />
           {errors.email && <span>{errors.email.message}</span>}
         </InputWrapper>
+
         <InputWrapper>
-          <label htmlFor="allowed_guests"> Acompanhantes:</label>
+          <label htmlFor="allowed_guests">Acompanhantes permitidos</label>
           <input
             type="number"
             id="allowed_guests"
-            placeholder="Quantidade de acompanhantes"
-            required
             {...register("allowed_guests")}
           />
           {errors.allowed_guests && (
             <span>{errors.allowed_guests.message}</span>
           )}
         </InputWrapper>
+
         <InputWrapper>
-          <label htmlFor="confirmed_guests"> Acompanhantes confirmados:</label>
+          <label htmlFor="confirmed_guests">Acompanhantes confirmados</label>
           <input
             type="number"
             id="confirmed_guests"
-            placeholder="Quantidade de acompanhantes"
-            required
             {...register("confirmed_guests")}
           />
           {errors.confirmed_guests && (
             <span>{errors.confirmed_guests.message}</span>
           )}
         </InputWrapper>
+
         <Buttons>
-          <ButtonBack onClick={handleBack} type="button" title="Voltar">
+          <ButtonBack type="button" onClick={() => navigate(-1)}>
             Voltar
           </ButtonBack>
-          <Button type="submit" title="Salvar alterações">
-            Salvar alterações
-          </Button>
+          <Button type="submit">Salvar alterações</Button>
         </Buttons>
       </Form>
     </Container>

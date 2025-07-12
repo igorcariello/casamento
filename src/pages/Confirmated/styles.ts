@@ -1,24 +1,22 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
   min-height: 100vh;
-  padding-top: clamp(2rem, 5vw, 2rem);
-  padding-bottom: clamp(2rem, 5vw, 2rem);
-  padding-left: clamp(0.5rem, 10vw, 50rem);
-  padding-right: clamp(0.5rem, 10vw, 50rem);
+  padding: 2rem clamp(0.5rem, 10vw, 50rem);
 
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-`
+`;
 
 export const Title = styled.h1`
   color: ${({ theme }) => theme.COLORS.FONT_COLOR_SECUNDARY};
   font-size: 2.5rem;
   text-align: center;
-`
+`;
 
 export const TotalCard = styled.div`
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_2};
@@ -27,7 +25,7 @@ export const TotalCard = styled.div`
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   font-weight: bold;
-`
+`;
 
 export const Table = styled.table`
   width: 100%;
@@ -55,26 +53,79 @@ export const Table = styled.table`
   tbody tr:nth-child(even) {
     background-color: ${({ theme }) => theme.COLORS.BACKGROUND_4};
   }
+`;
 
-  tfoot td {
-    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_3};
-    color: ${({ theme }) => theme.COLORS.FONT_COLOR_SECUNDARY};
-    font-weight: bold;
-  }
-`
+export const Actions = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+`;
 
 export const UnconfirmButton = styled.button`
-  background-color: transparent;
+  padding: 0.5rem 0.75rem;
+  background-color: ${({ theme }) => theme.COLORS.RED_500};
+  color: white;
   border: none;
-  color: red;
-  font-size: 1.2rem;
+  border-radius: 6px;
   cursor: pointer;
-  transition: transform 0.2s;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
 
   &:hover {
-    transform: scale(1.2);
+    background-color: ${({ theme }) => theme.COLORS.RED_100};
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   }
-`
+
+  &:active {
+    background-color: ${({ theme }) => theme.COLORS.RED_500};
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  }
+
+  svg {
+    pointer-events: none;
+  }
+`;
+
+export const QRCodeButton = styled(Link)`
+  padding: 0.5rem 0.75rem;
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_6};
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_7};
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+  &:active {
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_6};
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  }
+`;
 
 export const CardList = styled.div`
   display: none;
@@ -86,8 +137,7 @@ export const CardList = styled.div`
     width: 100%;
     max-width: 500px;
   }
-
-`
+`;
 
 export const Card = styled.div`
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_2};
@@ -97,45 +147,43 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-
-  position: relative;
-
-  strong {
-    color: ${({ theme }) => theme.COLORS.FONT_COLOR_PRIMARY};
-  }
-
-  span {
-    color: ${({ theme }) => theme.COLORS.FONT_COLOR_PRIMARY};
-  }
-
-  button {
-    position: absolute;
-    right: 0.5rem;
-    top: 0.5rem;
-    align-self: flex-end;
-  }
-`
+`;
 
 export const ButtonPDF = styled.button`
-  padding: 1rem;
+  padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 8px;
-  text-align: center;
 
-  color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_6};
+  color: white;
   font-weight: 600;
+  cursor: pointer;
 
-  margin-left: auto;
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_7};
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+  &:active {
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_6};
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  }
 
   @media(width < 560px) {
     width: 100%;
   }
-
-`
+`;
 
 export const Buttons = styled.footer`
   width: 100%;
-
   max-width: 62.5rem;
   display: flex;
-`
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+`;

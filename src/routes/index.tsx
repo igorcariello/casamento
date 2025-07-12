@@ -19,6 +19,8 @@ import { Stock } from "../pages/Stock";
 import { CheckInScanner } from "../pages/CheckInScanner";
 import { CheckInList } from "../pages/CheckInList";
 import { TicketPage } from "../pages/TicketPage";
+import { ProtectedRoute } from "./ProtectedRoute";
+import { PageError } from "../pages/PageError";
 
 export function RoutesApp() {
   return (
@@ -33,18 +35,68 @@ export function RoutesApp() {
         <Route path="/confirmation" element={<ConfirmationPage />} />
         <Route path="/presentlist" element={<PresentList />} />
         <Route path="/presentlist/cart/:id" element={<Cart />} />
-
+        <Route path="/confirmated" element={<Confirmated />} />
+        <Route path="/guests/:id/ticket" element={<TicketPage />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/confirmated" element={<Confirmated />} />
-        <Route path="/guests" element={<Guests />} />
-        <Route path="/guests/create" element={<CreateGuest />} />
-        <Route path="/edit/:id" element={<EditGuest />} />
-        <Route path="/reservations" element={<Reservations />} />
-        <Route path="/stock" element={<Stock />} />
-        <Route path="checkin-scanner" element={<CheckInScanner />} />
-        <Route path="checkinlist" element={<CheckInList />} />
-        <Route path="/guests/:id/ticket" element={<TicketPage />} />
+        <Route path="*" element={<PageError />} />
+
+        <Route
+          path="/guests"
+          element={
+            <ProtectedRoute>
+              <Guests />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/guests/create"
+          element={
+            <ProtectedRoute>
+              <CreateGuest />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/edit/:id"
+          element={
+            <ProtectedRoute>
+              <EditGuest />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/reservations"
+          element={
+            <ProtectedRoute>
+              <Reservations />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/stock"
+          element={
+            <ProtectedRoute>
+              <Stock />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/checkin-scanner"
+          element={
+            <ProtectedRoute>
+              <CheckInScanner />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/checkinlist"
+          element={
+            <ProtectedRoute>
+              <CheckInList />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );

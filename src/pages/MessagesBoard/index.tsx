@@ -6,9 +6,13 @@ import {
   MessageHeader,
   MessagesWrapper,
   Title,
+  EmptyMessage,
+  BackToHome,
 } from "./styles";
 import { api } from "../../lib/axios";
-import { AdminHeader } from "../../components/AdminHeader";
+import { Loader } from "../../components/Loader";
+import { Message } from "../../components/sections/Message";
+import { FaAngleLeft } from "react-icons/fa6";
 
 interface Message {
   id: number;
@@ -18,6 +22,7 @@ interface Message {
 
 export function MessagesBoard() {
   const [messages, setMessages] = useState<Message[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchMessages() {
@@ -26,6 +31,8 @@ export function MessagesBoard() {
         setMessages(response.data);
       } catch (error) {
         console.error("Erro ao buscar mensagens", error);
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -34,21 +41,29 @@ export function MessagesBoard() {
 
   return (
     <Container>
-      <AdminHeader />
-
       <Title>Mural de Mensagens</Title>
-      <MessagesWrapper>
-        {messages.length === 0 ? (
-          <p>Sem mensagens ainda</p>
-        ) : (
-          messages.map((msg) => (
+
+      <BackToHome to="/">
+        <FaAngleLeft />
+        Voltar para Home
+      </BackToHome>
+
+      {loading ? (
+        <Loader />
+      ) : messages.length === 0 ? (
+        <EmptyMessage>Sem mensagens ainda</EmptyMessage>
+      ) : (
+        <MessagesWrapper>
+          {messages.map((msg) => (
             <MessageCard key={msg.id}>
               <MessageHeader>{msg.sender}</MessageHeader>
               <MessageContent>{msg.content}</MessageContent>
             </MessageCard>
-          ))
-        )}
-      </MessagesWrapper>
+          ))}
+        </MessagesWrapper>
+      )}
+
+      <Message disnone="disnone" />
     </Container>
   );
 }
