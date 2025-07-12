@@ -3,9 +3,11 @@ import { Html5Qrcode } from "html5-qrcode";
 import { api } from "../../lib/axios";
 import { Container, Content, Title, ReaderWrapper, Message } from "./styles";
 import { useNavigate } from "react-router-dom";
+import { Modal } from "../../components/Modal";
 
 export function CheckInScanner() {
   const [scanning, setScanning] = useState(true);
+  const [modalMessage, setModalMessage] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,7 +27,6 @@ export function CheckInScanner() {
 
             console.log("QR Code decoded:", code);
 
-            // Para o scanner antes do alerta
             await scanner.stop();
             setScanning(false);
 
@@ -33,13 +34,10 @@ export function CheckInScanner() {
               const response = await api.post("/checkin", { code });
               const { success, message } = response.data;
 
-              alert(success ? `✅ ${message}` : `❌ ${message}`);
-
-              navigate("/checkinlist");
+              setModalMessage(success ? `✅ ${message}` : `❌ ${message}`);
             } catch (err) {
               console.error(err);
-              alert("❌ Erro ao confirmar check-in.");
-              navigate("/checkinlist");
+              setModalMessage("❌ Erro ao confirmar check-in.");
             }
           },
           (errorMessage) => {
@@ -60,6 +58,11 @@ export function CheckInScanner() {
     };
   }, [scanning, navigate]);
 
+  function handleCloseModal() {
+    setModalMessage("");
+    navigate("/checkinlist");
+  }
+
   return (
     <Container>
       <Content>
@@ -73,6 +76,10 @@ export function CheckInScanner() {
           </>
         ) : (
           <Message>✅ Check-in realizado. Scanner parado.</Message>
+        )}
+
+        {modalMessage && (
+          <Modal message={modalMessage} onClose={handleCloseModal} />
         )}
       </Content>
     </Container>
