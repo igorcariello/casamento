@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const Overlay = styled.div`
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0; /* substitui top, left, right, bottom = 0 */
+
+  width: 100%;
+  height: 100%;
 
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(2px);
@@ -32,12 +32,16 @@ export const ModalBox = styled.div`
   }
 
   button {
-    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+    background-color: #6c63ff;
     color: white;
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
+
+    &:hover {
+      background-color: #5750d4;
+    }
   }
 `;
