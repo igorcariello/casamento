@@ -15,21 +15,24 @@ export function CheckInScanner() {
   useEffect(() => {
     if (!scanning) return;
 
-    if (!scannerRef.current) {
-      scannerRef.current = new Html5Qrcode("reader");
-    }
+    const scanner = new Html5Qrcode("reader");
+    scannerRef.current = scanner;
 
-    async function startScanner() {
+    const startScanner = async () => {
       try {
-        await scannerRef.current?.start(
+        await scanner.start(
           { facingMode: "environment" },
           { fps: 10, qrbox: { width: 250, height: 250 } },
           async (decodedText) => {
             if (decodedText === lastDecodedRef.current) return;
             lastDecodedRef.current = decodedText;
 
-            await scannerRef.current?.stop();
-            setScanning(false);
+            try {
+              await scanner.stop();
+              setScanning(false);
+            } catch (err) {
+              console.warn("Erro ao parar scanner:", err);
+            }
 
             try {
               const response = await api.post("/checkin", {
@@ -42,19 +45,17 @@ export function CheckInScanner() {
               setModalMessage("❌ Erro ao confirmar check-in.");
             }
           },
-          (errorMessage) => {
-            console.warn("QR Code scan error:", errorMessage);
-          }
+          () => {}
         );
       } catch (err) {
         console.error("Erro ao iniciar scanner:", err);
       }
-    }
+    };
 
     startScanner();
 
     return () => {
-      scannerRef.current?.stop().catch(() => {});
+      scanner.stop().catch(() => {});
     };
   }, [scanning]);
 
