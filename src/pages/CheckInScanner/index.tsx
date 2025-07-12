@@ -2,13 +2,11 @@ import { useEffect, useState } from "react";
 import { Html5Qrcode } from "html5-qrcode";
 import { api } from "../../lib/axios";
 import { Container, Content, Title, ReaderWrapper, Message } from "./styles";
-import { useNavigate } from "react-router-dom";
 import { Modal } from "../../components/Modal";
 
 export function CheckInScanner() {
   const [scanning, setScanning] = useState(true);
   const [modalMessage, setModalMessage] = useState("");
-  const navigate = useNavigate();
 
   useEffect(() => {
     const scanner = new Html5Qrcode("reader");
@@ -56,7 +54,7 @@ export function CheckInScanner() {
     return () => {
       scanner.stop().catch((err) => console.log("Erro ao parar scanner", err));
     };
-  }, [scanning, navigate]);
+  }, [scanning]);
 
   function handleCloseModal() {
     setModalMessage("");
