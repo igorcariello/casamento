@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Html5Qrcode } from "html5-qrcode";
 import { api } from "../../lib/axios";
 import { Container, Content, Title, ReaderWrapper, Message } from "./styles";
@@ -9,21 +9,26 @@ export function CheckInScanner() {
   const [scanning, setScanning] = useState(true);
   const [modalMessage, setModalMessage] = useState<string | null>(null);
   const navigate = useNavigate();
+  const scannerRef = useRef<Html5Qrcode | null>(null);
+  const lastDecodedRef = useRef<string>("");
 
   useEffect(() => {
-    const scanner = new Html5Qrcode("reader");
-    let lastDecoded = "";
+    if (!scanning) return;
+
+    if (!scannerRef.current) {
+      scannerRef.current = new Html5Qrcode("reader");
+    }
 
     async function startScanner() {
       try {
-        await scanner.start(
+        await scannerRef.current?.start(
           { facingMode: "environment" },
           { fps: 10, qrbox: { width: 250, height: 250 } },
           async (decodedText) => {
-            if (decodedText === lastDecoded) return;
-            lastDecoded = decodedText;
+            if (decodedText === lastDecodedRef.current) return;
+            lastDecodedRef.current = decodedText;
 
-            await scanner.stop();
+            await scannerRef.current?.stop();
             setScanning(false);
 
             try {
@@ -31,7 +36,6 @@ export function CheckInScanner() {
                 code: decodedText.trim(),
               });
               const { success, message } = response.data;
-
               setModalMessage(success ? `✅ ${message}` : `❌ ${message}`);
             } catch (error) {
               console.error(error);
@@ -47,18 +51,16 @@ export function CheckInScanner() {
       }
     }
 
-    if (scanning) {
-      startScanner();
-    }
+    startScanner();
 
     return () => {
-      scanner.stop().catch(() => {});
+      scannerRef.current?.stop().catch(() => {});
     };
   }, [scanning]);
 
   function handleCloseModal() {
     setModalMessage(null);
-    navigate("/checkinlist");
+    navigate("/checklist");
   }
 
   return (
