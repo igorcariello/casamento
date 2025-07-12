@@ -1,4 +1,5 @@
 import { Button, Message, ModalContainer, Overlay } from "./styles";
+
 interface ModalProps {
   message: string;
   onClose: () => void;

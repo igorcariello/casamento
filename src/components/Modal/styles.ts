@@ -28,11 +28,15 @@ export const Message = styled.p`
 `;
 
 export const Button = styled.button`
-  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+  background-color: #6B46C1;
   color: white;
   border: none;
   padding: 10px 16px;
   border-radius: 4px;
   font-weight: bold;
   cursor: pointer;
+
+  &:hover {
+    background-color: #553C9A;
+  }
 `;
