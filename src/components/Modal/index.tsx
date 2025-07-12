@@ -1,4 +1,4 @@
-import { Container, Overlay, MessageText, CloseButton } from "./styles";
+import { Overlay, ModalBox } from "./styles";
 
 interface ModalProps {
   message: string;
@@ -7,18 +7,11 @@ interface ModalProps {
 
 export function Modal({ message, onClose }: ModalProps) {
   return (
-    <Overlay
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
-      aria-label="Modal"
-    >
-      <Container onClick={(e) => e.stopPropagation()}>
-        <MessageText>{message}</MessageText>
-        <CloseButton onClick={onClose} aria-label="Fechar modal">
-          OK
-        </CloseButton>
-      </Container>
+    <Overlay onClick={onClose}>
+      <ModalBox onClick={(e) => e.stopPropagation()}>
+        <p>{message}</p>
+        <button onClick={onClose}>Fechar</button>
+      </ModalBox>
     </Overlay>
   );
 }
