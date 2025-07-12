@@ -13,23 +13,27 @@ import { api } from "../../lib/axios";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaAngleLeft } from "react-icons/fa6";
-import { Modal } from "../../components/Modal"; // Importa seu Modal
+import { Modal } from "../../components/Modal"; // Importe o Modal
 
 const messageSchema = z.object({
-  name: z.string().min(1, "O nome é obrigatório."),
-  message: z.string().min(1, "A mensagem não pode ser vazia."),
+  name: z.string().min(1, "O nome é obrigatório"),
+  message: z.string().min(1, "A mensagem é obrigatória"),
 });
 
 type MessageFormInputs = z.infer<typeof messageSchema>;
 
 export function Messages() {
-  const { register, handleSubmit, reset, formState } =
-    useForm<MessageFormInputs>({
-      resolver: zodResolver(messageSchema),
-    });
-  const { errors } = formState;
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<MessageFormInputs>({
+    resolver: zodResolver(messageSchema),
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [modalMessage, setModalMessage] = useState<string | null>(null);
+  const [isSuccess, setIsSuccess] = useState(false);
   const navigate = useNavigate();
 
   function handleGoHome() {
@@ -47,9 +51,11 @@ export function Messages() {
       });
 
       setModalMessage("Mensagem enviada com sucesso!");
+      setIsSuccess(true);
       reset();
     } catch (error) {
       setModalMessage("Falha ao enviar mensagem. Tente novamente.");
+      setIsSuccess(false);
       console.error(error);
     } finally {
       setIsSubmitting(false);
@@ -58,7 +64,9 @@ export function Messages() {
 
   function handleCloseModal() {
     setModalMessage(null);
-    handleGoHome();
+    if (isSuccess) {
+      handleGoHome();
+    }
   }
 
   return (
@@ -71,20 +79,14 @@ export function Messages() {
       </div>
       <Form onSubmit={handleSubmit(handleSendMessage)}>
         <InputWrapper>
-          <label htmlFor="sender">Nome:</label>
+          <label htmlFor="sender">Seu nome:</label>
           <input
             type="text"
             id="sender"
             placeholder="Digite o seu nome"
             {...register("name")}
-            aria-invalid={errors.name ? "true" : "false"}
-            aria-describedby="error-name"
           />
-          {errors.name && (
-            <span id="error-name" role="alert" style={{ color: "red" }}>
-              {errors.name.message}
-            </span>
-          )}
+          {errors.name && <p style={{ color: "red" }}>{errors.name.message}</p>}
         </InputWrapper>
         <TextAreaWrapper>
           <label htmlFor="content">Mensagem:</label>
@@ -92,13 +94,9 @@ export function Messages() {
             id="content"
             placeholder="Escreva aqui a sua mensagem para os noivos."
             {...register("message")}
-            aria-invalid={errors.message ? "true" : "false"}
-            aria-describedby="error-message"
           />
           {errors.message && (
-            <span id="error-message" role="alert" style={{ color: "red" }}>
-              {errors.message.message}
-            </span>
+            <p style={{ color: "red" }}>{errors.message.message}</p>
           )}
         </TextAreaWrapper>
         <Button type="submit" disabled={isSubmitting}>
