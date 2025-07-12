@@ -17,11 +17,7 @@ import { Loader } from "../../components/Loader";
 const editGuestSchema = z.object({
   id: z.coerce.number(),
   name: z.string().min(1, "Nome é obrigatório"),
-  email: z
-    .string()
-    .email("Formato de e-mail inválido")
-    .optional()
-    .or(z.literal("")),
+  email: z.string().email("Formato de e-mail inválido").or(z.literal("")),
   allowed_guests: z.coerce.number().min(0, "Número deve ser positivo"),
   confirmed_guests: z.coerce.number().min(0, "Número deve ser positivo"),
 });
@@ -79,7 +75,7 @@ export function EditGuest() {
     try {
       await api.put(`/guests/${data.id}`, {
         ...data,
-        email: data.email === "" ? null : data.email,
+        email: data.email.trim() === "" ? null : data.email.trim(),
       });
       alert("Convidado atualizado com sucesso!");
       navigate("/guests");
