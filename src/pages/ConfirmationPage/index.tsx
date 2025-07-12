@@ -165,91 +165,94 @@ export function ConfirmationPage() {
   const showSuggestionsList = isSuggestionsPanelOpen && nameInput?.length >= 3;
 
   return (
-    <Container>
-      <div>
-        <BackToHomeLink to="/">
-          <FaAngleLeft />
-          voltar para Home
-        </BackToHomeLink>
-      </div>
-      <Form onSubmit={handleSubmit(handleSendConfirmation)}>
-        <InputWrapper ref={nameInputWrapperRef}>
-          <label htmlFor="name"> Nome:</label>
-          <input
-            type="text"
-            id="name"
-            placeholder="Digite o seu nome completo."
-            {...register("name")}
-            onFocus={() => setIsSuggestionsPanelOpen(true)}
-            autoComplete="off"
-          />
-          {errors.name && (
-            <LoadingText role="alert">{errors.name.message}</LoadingText>
-          )}
-          {showSuggestionsList && (
-            <>
-              {isLoadingSuggestions && <LoadingText>Buscando...</LoadingText>}
-              {!isLoadingSuggestions &&
-                suggestions.length === 0 &&
-                debouncedNameInput.length >= 3 && (
-                  <LoadingText>Convidado não encontrado</LoadingText>
+    <>
+      <Container>
+        <div>
+          <BackToHomeLink to="/">
+            <FaAngleLeft />
+            voltar para Home
+          </BackToHomeLink>
+        </div>
+        <Form onSubmit={handleSubmit(handleSendConfirmation)}>
+          <InputWrapper ref={nameInputWrapperRef}>
+            <label htmlFor="name"> Nome:</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Digite o seu nome completo."
+              {...register("name")}
+              onFocus={() => setIsSuggestionsPanelOpen(true)}
+              autoComplete="off"
+            />
+            {errors.name && (
+              <LoadingText role="alert">{errors.name.message}</LoadingText>
+            )}
+            {showSuggestionsList && (
+              <>
+                {isLoadingSuggestions && <LoadingText>Buscando...</LoadingText>}
+                {!isLoadingSuggestions &&
+                  suggestions.length === 0 &&
+                  debouncedNameInput.length >= 3 && (
+                    <LoadingText>Convidado não encontrado</LoadingText>
+                  )}
+                {suggestions.length > 0 && !isLoadingSuggestions && (
+                  <SuggestionsList>
+                    {suggestions.map((guest) => (
+                      <SuggestionItem
+                        key={guest.id}
+                        onMouseDown={() => handleSelectSuggestion(guest)}
+                      >
+                        {guest.name}
+                      </SuggestionItem>
+                    ))}
+                  </SuggestionsList>
                 )}
-              {suggestions.length > 0 && !isLoadingSuggestions && (
-                <SuggestionsList>
-                  {suggestions.map((guest) => (
-                    <SuggestionItem
-                      key={guest.id}
-                      onMouseDown={() => handleSelectSuggestion(guest)}
-                    >
-                      {guest.name}
-                    </SuggestionItem>
-                  ))}
-                </SuggestionsList>
-              )}
-            </>
-          )}
-        </InputWrapper>
+              </>
+            )}
+          </InputWrapper>
 
-        <InputWrapper>
-          <label htmlFor="email"> E-mail:</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Digite o seu e-mail principal."
-            {...register("email")}
-          />
-          {errors.email && (
-            <LoadingText role="alert">{errors.email.message}</LoadingText>
-          )}
-        </InputWrapper>
+          <InputWrapper>
+            <label htmlFor="email"> E-mail:</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Digite o seu e-mail principal."
+              {...register("email")}
+            />
+            {errors.email && (
+              <LoadingText role="alert">{errors.email.message}</LoadingText>
+            )}
+          </InputWrapper>
 
-        <InputWrapper>
-          <label htmlFor="confirmed_guests">Quantidade de acompanhantes:</label>
-          <input
-            type="number"
-            id="confirmed_guests"
-            placeholder={
-              windowWidth < 560
-                ? "Nº de acompanhantes."
-                : "Informe a quantidade de acompanhantes."
-            }
-            {...register("confirmed_guests", { valueAsNumber: true })}
-          />
-          {errors.confirmed_guests && (
-            <LoadingText role="alert">
-              {errors.confirmed_guests.message}
-            </LoadingText>
-          )}
-        </InputWrapper>
+          <InputWrapper>
+            <label htmlFor="confirmed_guests">
+              Quantidade de acompanhantes:
+            </label>
+            <input
+              type="number"
+              id="confirmed_guests"
+              placeholder={
+                windowWidth < 560
+                  ? "Nº de acompanhantes."
+                  : "Informe a quantidade de acompanhantes."
+              }
+              {...register("confirmed_guests", { valueAsNumber: true })}
+            />
+            {errors.confirmed_guests && (
+              <LoadingText role="alert">
+                {errors.confirmed_guests.message}
+              </LoadingText>
+            )}
+          </InputWrapper>
 
-        <Button type="submit" disabled={isSubmitting || isLoadingSuggestions}>
-          {isSubmitting ? "Confirmando..." : "Confirmar presença"}
-        </Button>
-      </Form>
-
+          <Button type="submit" disabled={isSubmitting || isLoadingSuggestions}>
+            {isSubmitting ? "Confirmando..." : "Confirmar presença"}
+          </Button>
+        </Form>
+      </Container>
       {modalMessage && (
         <Modal message={modalMessage} onClose={handleCloseModal} />
       )}
-    </Container>
+    </>
   );
 }

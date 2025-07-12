@@ -32,16 +32,12 @@ export const ModalBox = styled.div`
   }
 
   button {
-    background-color: #6c63ff;
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
     color: white;
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
-
-    &:hover {
-      background-color: #5750d4;
-    }
   }
 `;
