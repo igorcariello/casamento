@@ -19,29 +19,28 @@ export function CheckInScanner() {
           { fps: 10, qrbox: { width: 250, height: 250 } },
           async (decodedText) => {
             const code = decodedText.trim();
+
             if (code === lastDecoded) return;
             lastDecoded = code;
 
             console.log("QR Code decoded:", code);
 
+            // Para o scanner antes do alerta
+            await scanner.stop();
+            setScanning(false);
+
             try {
               const response = await api.post("/checkin", { code });
               const { success, message } = response.data;
 
-              if (success) {
-                alert(`✅ ${message}`);
-                navigate("/checkinlist");
-              } else {
-                alert(`❌ ${message}`);
-                navigate("/checkinlist");
-              }
+              alert(success ? `✅ ${message}` : `❌ ${message}`);
+
+              navigate("/checkinlist");
             } catch (err) {
               console.error(err);
               alert("❌ Erro ao confirmar check-in.");
+              navigate("/checkinlist");
             }
-
-            await scanner.stop();
-            setScanning(false);
           },
           (errorMessage) => {
             console.warn("QR Code scan error:", errorMessage);
@@ -59,7 +58,7 @@ export function CheckInScanner() {
     return () => {
       scanner.stop().catch((err) => console.log("Erro ao parar scanner", err));
     };
-  }, [scanning]);
+  }, [scanning, navigate]);
 
   return (
     <Container>
