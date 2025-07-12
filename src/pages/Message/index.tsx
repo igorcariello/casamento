@@ -61,41 +61,42 @@ export function Messages() {
   }
 
   return (
-    <Container>
-      <div>
-        <BackToHome to="/">
-          <FaAngleLeft />
-          voltar para Home
-        </BackToHome>
-      </div>
+    <>
+      <Container>
+        <div>
+          <BackToHome to="/">
+            <FaAngleLeft />
+            voltar para Home
+          </BackToHome>
+        </div>
 
-      <Form onSubmit={handleSubmit(handleSendMessage)}>
-        <InputWrapper>
-          <label htmlFor="sender">Seu nome:</label>
-          <input
-            type="text"
-            id="sender"
-            placeholder="Digite o seu nome"
-            required
-            {...register("name")}
-          />
-        </InputWrapper>
-        <TextAreaWrapper>
-          <label htmlFor="content">Mensagem:</label>
-          <textarea
-            id="content"
-            placeholder="Escreva aqui a sua mensagem para os noivos."
-            {...register("message")}
-          />
-        </TextAreaWrapper>
-        <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Enviando..." : "Enviar mensagem"}
-        </Button>
-      </Form>
-
+        <Form onSubmit={handleSubmit(handleSendMessage)}>
+          <InputWrapper>
+            <label htmlFor="sender">Seu nome:</label>
+            <input
+              type="text"
+              id="sender"
+              placeholder="Digite o seu nome"
+              required
+              {...register("name")}
+            />
+          </InputWrapper>
+          <TextAreaWrapper>
+            <label htmlFor="content">Mensagem:</label>
+            <textarea
+              id="content"
+              placeholder="Escreva aqui a sua mensagem para os noivos."
+              {...register("message")}
+            />
+          </TextAreaWrapper>
+          <Button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Enviando..." : "Enviar mensagem"}
+          </Button>
+        </Form>
+      </Container>
       {modalMessage && (
         <Modal message={modalMessage} onClose={handleCloseModal} />
       )}
-    </Container>
+    </>
   );
 }
