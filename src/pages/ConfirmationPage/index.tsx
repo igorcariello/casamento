@@ -1,5 +1,4 @@
 import * as z from "zod";
-
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
@@ -18,8 +17,7 @@ import { api } from "../../lib/axios";
 import { useEffect, useState, useRef } from "react";
 import { AxiosError } from "axios";
 import { useDebounce } from "../../hook/useDebounce";
-
-import { Modal } from "../../components/Modal"; // Importe o modal
+import { Modal } from "../../components/Modal";
 
 const confirmationSchema = z.object({
   name: z
@@ -55,12 +53,12 @@ export function ConfirmationPage() {
   } = useForm<ConfirmationFormInputs>({
     resolver: zodResolver(confirmationSchema),
   });
+
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
   const [modalMessage, setModalMessage] = useState<string | null>(null);
-  const [isSuccess, setIsSuccess] = useState(false); // flag para saber se foi sucesso
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const nameInput = watch("name");
   const debouncedNameInput = useDebounce(nameInput, 500);
@@ -84,12 +82,7 @@ export function ConfirmationPage() {
     const { name, confirmed_guests, email } = data;
 
     try {
-      await api.post("confirmation", {
-        name,
-        email,
-        confirmed_guests,
-      });
-
+      await api.post("confirmation", { name, email, confirmed_guests });
       setModalMessage(
         "Confirmação realizada com sucesso! Você receberá um QR code por e-mail que deverá ser apresentado no dia do evento."
       );
@@ -99,8 +92,7 @@ export function ConfirmationPage() {
       const err = error as AxiosError<{ message: string }>;
       console.error(err);
 
-      const apiErrorMessage = (err.response?.data as { message?: string })
-        ?.message;
+      const apiErrorMessage = err.response?.data?.message;
       const message =
         apiErrorMessage || "Falha ao confirmar presença. Tente novamente.";
 
@@ -113,9 +105,7 @@ export function ConfirmationPage() {
 
   function handleCloseModal() {
     setModalMessage(null);
-    if (isSuccess) {
-      goHome();
-    }
+    if (isSuccess) goHome();
   }
 
   useEffect(() => {
@@ -123,47 +113,24 @@ export function ConfirmationPage() {
       const fetchSuggestions = async () => {
         setIsLoadingSuggestions(true);
         setSuggestions([]);
-
         try {
           const response = await api.get<Guest[]>("/guests", {
             params: { nameSearch: debouncedNameInput },
           });
 
           if (Array.isArray(response.data)) {
-            const guestsFromServer = response.data;
-
-            const filteredClientSide = guestsFromServer.filter((guest) =>
+            const filtered = response.data.filter((guest) =>
               guest.name
                 .toLowerCase()
                 .includes(debouncedNameInput.toLowerCase())
             );
-
-            setSuggestions(filteredClientSide);
+            setSuggestions(filtered);
           } else {
             console.warn("Resposta da API não é um array:", response.data);
             setSuggestions([]);
           }
         } catch (error) {
-          const axiosError = error as AxiosError;
-          console.error("Erro detalhado ao buscar sugestões", axiosError);
-
-          if (axiosError.response) {
-            console.error(
-              "Dados da resposta do erro:",
-              axiosError.response.data
-            );
-            console.error("Status do erro:", axiosError.response.status);
-          } else if (axiosError.request) {
-            console.error(
-              "Nenhuma resposta recebida, erro na requisição:",
-              axiosError.request
-            );
-          } else {
-            console.error(
-              "Erro ao configurar a requisição:",
-              axiosError.message
-            );
-          }
+          console.error("Erro ao buscar sugestões:", error);
           setSuggestions([]);
         } finally {
           setIsLoadingSuggestions(false);
@@ -192,10 +159,7 @@ export function ConfirmationPage() {
     }
 
     document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const showSuggestionsList = isSuggestionsPanelOpen && nameInput?.length >= 3;
