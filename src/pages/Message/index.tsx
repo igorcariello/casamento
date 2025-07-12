@@ -16,16 +16,18 @@ import { FaAngleLeft } from "react-icons/fa6";
 import { Modal } from "../../components/Modal"; // Importa seu Modal
 
 const messageSchema = z.object({
-  name: z.string(),
-  message: z.string(),
+  name: z.string().min(1, "O nome é obrigatório."),
+  message: z.string().min(1, "A mensagem não pode ser vazia."),
 });
 
 type MessageFormInputs = z.infer<typeof messageSchema>;
 
 export function Messages() {
-  const { register, handleSubmit, reset } = useForm<MessageFormInputs>({
-    resolver: zodResolver(messageSchema),
-  });
+  const { register, handleSubmit, reset, formState } =
+    useForm<MessageFormInputs>({
+      resolver: zodResolver(messageSchema),
+    });
+  const { errors } = formState;
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [modalMessage, setModalMessage] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -69,22 +71,35 @@ export function Messages() {
       </div>
       <Form onSubmit={handleSubmit(handleSendMessage)}>
         <InputWrapper>
-          <label htmlFor="sender"> Sou nome:</label>
+          <label htmlFor="sender">Nome:</label>
           <input
             type="text"
             id="sender"
             placeholder="Digite o seu nome"
-            required
             {...register("name")}
+            aria-invalid={errors.name ? "true" : "false"}
+            aria-describedby="error-name"
           />
+          {errors.name && (
+            <span id="error-name" role="alert" style={{ color: "red" }}>
+              {errors.name.message}
+            </span>
+          )}
         </InputWrapper>
         <TextAreaWrapper>
-          <label htmlFor="content"> Mensagem: </label>
+          <label htmlFor="content">Mensagem:</label>
           <textarea
             id="content"
             placeholder="Escreva aqui a sua mensagem para os noivos."
             {...register("message")}
+            aria-invalid={errors.message ? "true" : "false"}
+            aria-describedby="error-message"
           />
+          {errors.message && (
+            <span id="error-message" role="alert" style={{ color: "red" }}>
+              {errors.message.message}
+            </span>
+          )}
         </TextAreaWrapper>
         <Button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Enviando..." : "Enviar mensagem"}

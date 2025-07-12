@@ -1,39 +1,37 @@
 import styled from "styled-components";
 
-export const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-`;
-
 export const ModalContainer = styled.div`
   background: white;
-  padding: 24px;
+  padding: 1.8rem 2.4rem;
   border-radius: 8px;
+  max-width: 90vw;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.15);
   text-align: center;
-  max-width: 400px;
-  width: 90%;
 `;
 
 export const Message = styled.p`
-  margin-bottom: 20px;
-  font-size: 16px;
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 1.4rem;
+  white-space: pre-line; 
 `;
 
-export const Button = styled.button`
-  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_8};
+export const CloseButton = styled.button`
+  padding: 0.6rem 1.2rem;
+  background: #6f46c7;
   color: white;
   border: none;
-  padding: 10px 16px;
-  border-radius: 4px;
-  font-weight: bold;
+  border-radius: 5px;
   cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  min-width: 80px;
 
+  &:hover,
+  &:focus {
+    background: #5936a6;
+    outline: none;
+  }
 `;

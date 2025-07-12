@@ -60,6 +60,7 @@ export function ConfirmationPage() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const [modalMessage, setModalMessage] = useState<string | null>(null);
+  const [isSuccess, setIsSuccess] = useState(false); // flag para saber se foi sucesso
 
   const nameInput = watch("name");
   const debouncedNameInput = useDebounce(nameInput, 500);
@@ -92,7 +93,7 @@ export function ConfirmationPage() {
       setModalMessage(
         "Confirmação realizada com sucesso! Você receberá um QR code por e-mail que deverá ser apresentado no dia do evento."
       );
-
+      setIsSuccess(true);
       reset();
     } catch (error) {
       const err = error as AxiosError<{ message: string }>;
@@ -104,6 +105,7 @@ export function ConfirmationPage() {
         apiErrorMessage || "Falha ao confirmar presença. Tente novamente.";
 
       setModalMessage(message);
+      setIsSuccess(false);
     } finally {
       setIsSubmitting(false);
     }
@@ -111,7 +113,9 @@ export function ConfirmationPage() {
 
   function handleCloseModal() {
     setModalMessage(null);
-    goHome();
+    if (isSuccess) {
+      goHome();
+    }
   }
 
   useEffect(() => {
