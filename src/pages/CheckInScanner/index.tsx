@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Html5Qrcode } from "html5-qrcode";
 import { api } from "../../lib/axios";
 import { Container, Content, Title, ReaderWrapper, Message } from "./styles";
@@ -7,39 +7,34 @@ import { Modal } from "../../components/Modal";
 
 export function CheckInScanner() {
   const [scanning, setScanning] = useState(true);
-  const [modalMessage, setModalMessage] = useState("");
-  const scannerRef = useRef<Html5Qrcode | null>(null);
+  const [modalMessage, setModalMessage] = useState<string | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    scannerRef.current = new Html5Qrcode("reader");
+    const scanner = new Html5Qrcode("reader");
     let lastDecoded = "";
 
     async function startScanner() {
       try {
-        if (!scannerRef.current) return;
-
-        await scannerRef.current.start(
+        await scanner.start(
           { facingMode: "environment" },
           { fps: 10, qrbox: { width: 250, height: 250 } },
           async (decodedText) => {
-            const code = decodedText.trim();
+            if (decodedText === lastDecoded) return;
+            lastDecoded = decodedText;
 
-            if (code === lastDecoded) return;
-            lastDecoded = code;
-
-            console.log("QR Code decoded:", code);
+            await scanner.stop();
+            setScanning(false);
 
             try {
-              await scannerRef.current?.stop();
-              setScanning(false);
-
-              const response = await api.post("/checkin", { code });
+              const response = await api.post("/checkin", {
+                code: decodedText.trim(),
+              });
               const { success, message } = response.data;
 
               setModalMessage(success ? `✅ ${message}` : `❌ ${message}`);
-            } catch (err) {
-              console.error(err);
+            } catch (error) {
+              console.error(error);
               setModalMessage("❌ Erro ao confirmar check-in.");
             }
           },
@@ -57,14 +52,12 @@ export function CheckInScanner() {
     }
 
     return () => {
-      scannerRef.current
-        ?.stop()
-        .catch((err) => console.log("Erro ao parar scanner", err));
+      scanner.stop().catch(() => {});
     };
   }, [scanning]);
 
   function handleCloseModal() {
-    setModalMessage("");
+    setModalMessage(null);
     navigate("/checkinlist");
   }
 
@@ -72,6 +65,7 @@ export function CheckInScanner() {
     <Container>
       <Content>
         <Title>Leitor de QR Code - Check-in</Title>
+
         {scanning ? (
           <>
             <ReaderWrapper id="reader" />
