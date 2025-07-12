@@ -19,6 +19,8 @@ import { useEffect, useState, useRef } from "react";
 import { AxiosError } from "axios";
 import { useDebounce } from "../../hook/useDebounce";
 
+import { Modal } from "../../components/Modal"; // Importe o modal
+
 const confirmationSchema = z.object({
   name: z
     .string({ required_error: "O nome é obrigatório." })
@@ -57,6 +59,8 @@ export function ConfirmationPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  const [modalMessage, setModalMessage] = useState<string | null>(null);
+
   const nameInput = watch("name");
   const debouncedNameInput = useDebounce(nameInput, 500);
   const [suggestions, setSuggestions] = useState<Guest[]>([]);
@@ -85,9 +89,11 @@ export function ConfirmationPage() {
         confirmed_guests,
       });
 
-      alert("Confirmação realizada com sucesso!");
+      setModalMessage(
+        "Confirmação realizada com sucesso! Você receberá um QR code por e-mail que deverá ser apresentado no dia do evento."
+      );
+
       reset();
-      goHome();
     } catch (error) {
       const err = error as AxiosError<{ message: string }>;
       console.error(err);
@@ -96,10 +102,16 @@ export function ConfirmationPage() {
         ?.message;
       const message =
         apiErrorMessage || "Falha ao confirmar presença. Tente novamente.";
-      alert(message);
+
+      setModalMessage(message);
     } finally {
       setIsSubmitting(false);
     }
+  }
+
+  function handleCloseModal() {
+    setModalMessage(null);
+    goHome();
   }
 
   useEffect(() => {
@@ -155,7 +167,7 @@ export function ConfirmationPage() {
       };
       fetchSuggestions();
     } else {
-      setSuggestions([]); // Limpa sugestões se o input for muito curto ou vazio
+      setSuggestions([]);
     }
   }, [debouncedNameInput]);
 
@@ -266,6 +278,10 @@ export function ConfirmationPage() {
           {isSubmitting ? "Confirmando..." : "Confirmar presença"}
         </Button>
       </Form>
+
+      {modalMessage && (
+        <Modal message={modalMessage} onClose={handleCloseModal} />
+      )}
     </Container>
   );
 }

@@ -13,6 +13,7 @@ import { api } from "../../lib/axios";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaAngleLeft } from "react-icons/fa6";
+import { Modal } from "../../components/Modal"; // Importa seu Modal
 
 const messageSchema = z.object({
   name: z.string(),
@@ -26,7 +27,7 @@ export function Messages() {
     resolver: zodResolver(messageSchema),
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  const [modalMessage, setModalMessage] = useState<string | null>(null);
   const navigate = useNavigate();
 
   function handleGoHome() {
@@ -35,7 +36,6 @@ export function Messages() {
 
   async function handleSendMessage(data: MessageFormInputs) {
     setIsSubmitting(true);
-
     const { name, message } = data;
 
     try {
@@ -44,15 +44,19 @@ export function Messages() {
         content: message,
       });
 
-      alert("Mensagem enviada com sucesso!");
+      setModalMessage("Mensagem enviada com sucesso!");
       reset();
-      handleGoHome();
     } catch (error) {
-      alert("Falha ao enviar mensagem. Tente novamente.");
+      setModalMessage("Falha ao enviar mensagem. Tente novamente.");
       console.error(error);
     } finally {
       setIsSubmitting(false);
     }
+  }
+
+  function handleCloseModal() {
+    setModalMessage(null);
+    handleGoHome();
   }
 
   return (
@@ -86,6 +90,10 @@ export function Messages() {
           {isSubmitting ? "Enviando..." : "Enviar mensagem"}
         </Button>
       </Form>
+
+      {modalMessage && (
+        <Modal message={modalMessage} onClose={handleCloseModal} />
+      )}
     </Container>
   );
 }

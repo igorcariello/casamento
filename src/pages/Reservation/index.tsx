@@ -32,11 +32,16 @@ export function Reservations() {
 
   function formatDateToBrazil(dateString: string) {
     const date = new Date(dateString);
-    const brasilDate = new Date(date.getTime() - 3 * 60 * 60 * 1000);
 
-    return brasilDate.toLocaleString("pt-BR", {
-      timeZone: "America/Sao_Paulo",
+    return date.toLocaleString("pt-BR", {
       hour12: false,
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      timeZone: "America/Sao_Paulo", // opcional se o banco já salvar certo
     });
   }
 
