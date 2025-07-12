@@ -65,7 +65,7 @@ export function CheckInScanner() {
 
   function handleCloseModal() {
     setModalMessage(null);
-    navigate("/checklist");
+    navigate("/checkinlist");
   }
 
   return (
